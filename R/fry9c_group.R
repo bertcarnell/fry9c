@@ -173,10 +173,13 @@ Fry9c_group <- function(years, quarters)
   return(fry9c_group$new(years, quarters))
 }
 
-#' S3 Method for the length of a \code{fry9c_group}
+#' @rdname fry9c_group
 #'
 #' @param x the \code{fry9c_group} object
 #' @param ... not used
+#'
+#' @method length fry9c_group
+#' @export
 #'
 #' @return the number of \code{fry9c} objects in the group
 #'

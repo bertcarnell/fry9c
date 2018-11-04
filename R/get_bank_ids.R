@@ -9,9 +9,12 @@
 #' @export
 #'
 #' @examples
-#' bank_meta_data <- get_rsids(file.path(fry_path, "hc-name-list.pdf"))
+#' bank_meta_data <- data.frame(ID_RSSID = c(10, 20, 30),
+#'   Entity_Type = rep("FHD", 3),
+#'   Name = c("HUNTINGTON BANCSHARES INCORPORATED", "KEYCORP", "PNC BANK CORP"))
 #' targets <- c("HUNTINGTON BANCSHARES INCORPORATED", "KEYCORP", "PNC BANK CORP")
 #' target_ids <- get_bank_ids(targets, bank_meta_data)
+#' all(target_ids == c(10, 20, 30))
 
 get_bank_ids <- function(bank_names, bank_meta_data, entity_type="FHD", most_recent=TRUE)
 {

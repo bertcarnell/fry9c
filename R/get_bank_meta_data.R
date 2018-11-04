@@ -1,15 +1,21 @@
-# Create a dataset from the Chicago Fed metadata
-
-# Procedure
-#  1. Download a new file from https://www.chicagofed.org/~/media/others/banking/financial-institution-reports/hc-name-list-pdf.pdf?la=en
-#  1. Read the data from /doc/hc-name-list.pdf
-
-# get reserve system IDs
-# ID_RSSD
-get_rsids <- function(file_name)
+#' Get bank metadata from the Chicago Fed
+#'
+#' @return a \code{data.frame} containing the metadata
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_bank_meta_data()
+#' }
+get_bank_meta_data <- function()
 {
-  #bank_text <- pdftools::pdf_text(file.path("C:", "developer", "repositories", "ProvableBanking", "hc-name-list.pdf"))
+  tmpdir <- tempdir()
+  file_name <- file.path(tmpdir, "hc-name-list-pdf.pdf")
+  my_url <- "https://www.chicagofed.org/~/media/others/banking/financial-institution-reports/hc-name-list-pdf.pdf?la=en"
+  h <- httr::handle(my_url)
+  httr::GET(url = my_url, httr::write_disk(file_name, overwrite = TRUE), handle = h)
   bank_text <- pdftools::pdf_text(file_name)
+  unlink(file_name)
   res <- vector("list", length = length(bank_text))
   for (i in 1:length(bank_text)) # loop over pages
   {
@@ -21,8 +27,9 @@ get_rsids <- function(file_name)
   res <- unlist(res)
   tf <- tempfile("banklisting.txt")
   writeLines(text = res, con = tf)
-  bank_meta_data <- read.fwf(file = tf, widths = c(9,11,200), strip.white = TRUE, stringsAsFactors = FALSE,
-                             comment.char = "")
+  bank_meta_data <- utils::read.fwf(file = tf, widths = c(9,11,200),
+                                    strip.white = TRUE, stringsAsFactors = FALSE,
+                                    comment.char = "")
   unlink(tf)
   names(bank_meta_data) <- c("ID_RSSID", "Entity_Type", "Name")
   return(bank_meta_data)
