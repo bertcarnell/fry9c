@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:element name="FRY9C" minOccurs="1" maxOccurs="unbounded">
+    <xsd:element name="FRY9C">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="schedule" minOccurs="1" maxOccurs="unbounded" type="_Schedules"/>
+                <xsd:element ref="schedule" minOccurs="1" maxOccurs="unbounded"/>
             </xsd:sequence>
             <xsd:attribute name="date" type="xsd:string"/>
             <xsd:attribute name="omb_number" type="xsd:string"/>
             <xsd:attribute name="title" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
-    <xsd:element name="_Schedules">
+    <xsd:element name="schedule">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="component" minOccurs="1" maxOccurs="unbounded" type="_Components"/>
+                <xsd:element ref="component" minOccurs="1" maxOccurs="unbounded"/>
             </xsd:sequence>
             <xsd:attribute name="desig" type="xsd:string"/>
             <xsd:attribute name="title" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
-    <xsd:element name="_Components">
+    <xsd:element name="component">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="component" minOccurs="0" maxOccurs="unbounded" type="_Components"/>
+                <xsd:element ref="component" minOccurs="0" maxOccurs="unbounded"/>
             </xsd:sequence>
             <xsd:attribute name="num" type="xsd:string"/>
             <xsd:attribute name="name" type="xsd:string"/>

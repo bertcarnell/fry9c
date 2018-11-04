@@ -39,7 +39,8 @@ parse_fry9c <- function(xml_filename, xsd_filename = NA)
   if (length(xsd_filename) == 1 && !is.na(xsd_filename))
   {
     assertthat::assert_that(file.exists(xsd_filename))
-    assertthat::assert_that(xml2::xml_validate(X, schema = xsd_filename))
+    Y <- xml2::read_xml(xsd_filename)
+    assertthat::assert_that(xml2::xml_validate(X, schema = Y))
   }
   fry9c_attrs <- xml2::xml_attrs(X)
   fry9c <- Fry9c(fry9c_attrs["date"], fry9c_attrs["omb_number"], fry9c_attrs["title"])

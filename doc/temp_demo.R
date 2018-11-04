@@ -1,11 +1,11 @@
-require(rvest)
-require(lubridate)
 require(ggplot2)
 require(assertthat)
 require(pdftools)
 require(RColorBrewer)
 
-fry_path <- file.path("C:", "developer", "repositories", "ProvableBanking")
+repositoryPath <- file.path("C:","Users","Rob","Documents","Repositories")
+
+fry_path <- file.path(repositoryPath, "fry9c", "doc")
 
 if (FALSE)
 {
@@ -32,7 +32,8 @@ if (FALSE)
 }
 load(file.path(fry_path, "fry9data.Rdata"))
 
-fry9c_data_list <- list(X1Q16, X2Q16, X3Q16, X4Q16,
+fry9c_data_list <- list(X1Q15, X2Q15, X3Q15, X4Q15,
+                        X1Q16, X2Q16, X3Q16, X4Q16,
                         X1Q17, X2Q17, X3Q17, X4Q17,
                         X1Q18, X2Q18
 )
@@ -41,7 +42,7 @@ rm(X1Q18, X2Q18,
    X4Q16, X3Q16, X2Q16, X1Q16,
    X4Q15, X3Q15, X2Q15, X1Q15)
 
-bank_meta_data <- get_rsids(file.path(fry_path, "hc-name-list.pdf"))
+bank_meta_data <- get_bank_meta_data()
 
 ################################################################################
 # Bank Info #
@@ -89,14 +90,14 @@ assertthat::assert_that(length(targets) == length(stock_sizes))
 
 target_ids <- get_bank_ids(targets, bank_meta_data)
 
-fry9cs <- fry9c_group$new(years = c(rep(2016, 4), rep(2017, 4), 2018, 2018),
-                          quarters = c(1:4, 1:4, 1:2))
+fry9cs <- fry9c_group$new(years = c(rep(2015, 4), rep(2016, 4), rep(2017, 4), 2018, 2018),
+                          quarters = c(1:4, 1:4, 1:4, 1:2))
 
-fry9cs$parse_fry9c(file.path(fry_path, c(
-  "FR_Y-9C20160331.xml", "FR_Y-9C20160630.xml", "FR_Y-9C20160930.xml",
-  "FR_Y-9C20161231.xml", "FR_Y-9C20170331.xml", "FR_Y-9C20170630.xml",
-  "FR_Y-9C20170930.xml", "FR_Y-9C20171231.xml", "FR_Y-9C20180331.xml",
-  "FR_Y-9C20180630.xml"
+fry9cs$parse_fry9c(file.path(repositoryPath, "fry9c", "inst", "extdata", c(
+  "FR_Y-9C20150331.xml", "FR_Y-9C20150630.xml", "FR_Y-9C20150930.xml", "FR_Y-9C20151231.xml",
+  "FR_Y-9C20160331.xml", "FR_Y-9C20160630.xml", "FR_Y-9C20160930.xml", "FR_Y-9C20161231.xml",
+  "FR_Y-9C20170331.xml", "FR_Y-9C20170630.xml", "FR_Y-9C20170930.xml", "FR_Y-9C20171231.xml",
+  "FR_Y-9C20180331.xml", "FR_Y-9C20180630.xml"
 )))
 
 subset_ids <- function(target_ids, dat)

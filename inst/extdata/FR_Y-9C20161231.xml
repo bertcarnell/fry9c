@@ -1,4 +1,5 @@
-<FRY9C date="20161231" omb_number="7100-0128" title="Consolidated Financial Statements for Holding Companies—FR Y-9C">
+<FRY9C date="20161231" omb_number="7100-0128" title="Consolidated Financial Statements for Holding Companies—FR Y-9C"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="FR_Y-9C.xsd">
   <schedule desig="HI" title="Consolidated Income Statement">
     <component num="1." name="Interest Income" key="NA">
       <component num="1.a." name="Interest and fee income on loans" key="NA">

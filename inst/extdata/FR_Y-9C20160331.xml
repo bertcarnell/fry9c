@@ -1,9 +1,11 @@
-<FRY9C date="20160331" omb_number="7100-0128" title="Consolidated Financial Statements for Holding Companies—FR Y-9C">
+<?xml version="1.0" encoding="UTF-8"?>
+<FRY9C date="20160331" omb_number="7100-0128" title="Consolidated Financial Statements for Holding Companiesâ€”FR Y-9C"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="FR_Y-9C.xsd">
   <schedule desig="HI" title="Consolidated Income Statement">
     <component num="1." name="Interest Income" key="NA">
       <component num="1.a." name="Interest and fee income on loans" key="NA">
         <component num="1.a.(1)" name="In domestic offices" key="NA">
-          <component num="1.a.(1)(a)" name="Loans secured by 1– 4 family residential properties" key="BHCK4435"/>
+          <component num="1.a.(1)(a)" name="Loans secured by 1â€“ 4 family residential properties" key="BHCK4435"/>
           <component num="1.a.(1)(b)" name="All other loans secured by real estate" key="BHCK4436"/>
           <component num="1.a.(1)(c)" name="All other loans" key="BHCKF821"/>
         </component>
@@ -189,7 +191,7 @@
     <component num="2." name="Federal funds sold and securities purchased under agreements to resell" key="BHCK3365"/>
     <component num="3." name="" key="NA">
       <component num="3.a." name="Total loans and leases in domestic offices" key="BHDM3516">
-        <component num="3.a.(1)" name="Loans secured by 1–4 family residential properties" key="BHDM3465"/>
+        <component num="3.a.(1)" name="Loans secured by 1â€“4 family residential properties" key="BHDM3465"/>
         <component num="3.a.(2)" name="All other loans secured by real estate" key="BHDM3466"/>
         <component num="3.a.(3)" name="Loans to finance agricultural production and other loans to farmers" key="BHDM3386"/>
         <component num="3.a.(4)" name="Commercial and industrial loans" key="BHDM3387"/>
