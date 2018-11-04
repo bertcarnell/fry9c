@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FRY9C date="20140630" omb_number="7100-0128" title="Consolidated Financial Statements for Holding Companiesâ€”FR Y-9C"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="FR_Y-9C.xsd">
+  <schedule desig="HI" title="Consolidated Income Statement">
+    <component num="1." name="Interest Income" key="NA">
+      <component num="1.a." name="Interest and fee income on loans" key="NA">
+        <component num="1.a.(1)" name="In domestic offices" key="NA">
+          <component num="1.a.(1)(a)" name="Loans secured by 1â€“ 4 family residential properties" key="BHCK4435"/>
+          <component num="1.a.(1)(b)" name="All other loans secured by real estate" key="BHCK4436"/>
+          <component num="1.a.(1)(c)" name="All other loans" key="BHCKF821"/>
+        </component>
+        <component num="1.a.(2)" name="In foreign offices, Edge and Agreement subsidiaries, and IBFs" key="BHCK4059"/>
+      </component>
+      <component num="1.b." name="Income from lease financing receivables" key="BHCK4065"/>
+      <component num="1.c." name="Interest income on balances due from depository institutions1" key="BHCK4115"/>
+      <component num="1.d." name="Interest and dividend income on securities" key="NA">
+        <component num="1.d.(1)" name="U.S. Treasury securities and U.S. government agency obligations (excluding mortgage-backed securities)" key="BHCKB488"/>
+        <component num="1.d.(2)" name="Mortgage-backed securities" key="BHCKB489"/>
+        <component num="1.d.(3)" name="All other securities" key="BHCK4060"/>
+      </component>
+      <component num="1.e." name="Interest income from trading assets" key="BHCK4069"/>
+      <component num="1.f." name="Interest income on federal funds sold and securities purchased under agreements to resell" key="BHCK4020"/>
+      <component num="1.g." name="Other interest income" key="BHCK4518"/>
+      <component num="1.h." name="Total interest income" key="BHCK4107"/>
+    </component>
+    <component num="2." name="Interest expense" key="NA">
+      <component num="2.a." name="Interest on deposits" key="NA">
+        <component num="2.a.(1)" name="In domestic offices" key="NA">
+          <component num="2.a.(1)(a)" name="Time deposits of $100,000 or more." key="BHCKA517"/>
+          <component num="2.a.(1)(b)" name="Time deposits of less than $100,000" key="BHCKA518"/>
+          <component num="2.a.(1)(c)" name="Other deposits" key="BHCK6761"/>
+        </component>
+        <component num="2.a.(2)" name="In foreign offices, Edge and Agreement subsidiaries, and IBFs" key="BHCK4172"/>
+      </component>
+      <component num="2.b." name="Expense on federal funds purchased and securities sold under agreements to repurchase" key="BHCK4180"/>
+      <component num="2.c." name="Interest on trading liabilities and other borrowed money (excluding subordinated notes and debentures)" key="BHCK4185"/>
+      <component num="2.d." name="Interest on subordinated notes and debentures and on mandatory convertible securities" key="BHCK4397"/>
+      <component num="2.e." name="Other interest expense" key="BHCK4398"/>
+      <component num="2.f." name="Total interest expense" key="BHCK4073"/>
+    </component>
+    <component num="3." name="Net interest income" key="BHCK4074"/>
+    <component num="4." name="Provision for loan and lease losses" key="BHCK4230"/>
+    <component num="5." name="Noninterest income" key="NA">
+      <component num="5.a." name="Income from fiduciary activities" key="BHCK4070"/>
+      <component num="5.b." name="Service charges on deposit accounts in domestic offices" key="BHCK4483"/>
+      <component num="5.c." name="Trading revenue" key="BHCKA220"/>
+      <component num="5.d." name="" key="NA">
+        <component num="5.d.(1)" name="Fees and commissions from securities brokerage" key="BHCKC886"/>
+        <component num="5.d.(2)" name="Investment banking, advisory, and underwriting fees and commissions" key="BHCKC888"/>
+        <component num="5.d.(3)" name="Fees and commissions from annuity sales" key="BHCKC887"/>
+        <component num="5.d.(4)" name="Underwriting income from insurance and reinsurance activities" key="BHCKC386"/>
+        <component num="5.d.(5)" name="Income from other insurance activities" key="BHCKC387"/>
+      </component>
+      <component num="5.e." name="Venture capital revenue" key="BHCKB491"/>
+      <component num="5.f." name="Net servicing fees" key="BHCKB492"/>
+      <component num="5.g." name="Net securitization income" key="BHCKB493"/>
+      <component num="5.h." name="Not Applicable" key="NA"/>
+      <component num="5.i." name="Net gains (losses) on sales of loans and lease" key="BHCK8560"/>
+      <component num="5.j." name="Net gains (losses) on sales of other real estate owned" key="BHCK8561"/>
+      <component num="5.k." name="Net gains (losses) on sales of other assets" key="BHCKB496"/>
+      <component num="5.l." name="Other noninterest income" key="BHCKB497"/>
+      <component num="5.m." name="Total noninterest income" key="BHCK4079"/>
+    </component>
+    <component num="6." name="Realized Gains" key="NA">
+      <component num="6.a." name="Realized gains (losses) on held-to-maturity securities" key="BHCK3521"/>
+      <component num="6.b." name="Realized gains (losses) on available-for-sale securities" key="BHCK3196"/>
+    </component>
+    <component num="7." name="Noninterest expense" key="NA">
+      <component num="7.a." name="Salaries and employee benefits" key="BHCK4135"/>
+      <component num="7.b." name="Expenses of premises and fixed assets (net of rental income) (excluding salaries and employee benefits and mortgage interest)" key="BHCK4217"/>
+      <component num="7.c." name="" key="NA">
+        <component num="7.c.(1)" name="Goodwill impairment losses" key="BHCKC216"/>
+        <component num="7.c.(2)" name="Amortization expense and impairment losses for other intangible assets" key="BHCKC232"/>
+      </component>
+      <component num="7.d." name="Other noninterest expense" key="BHCK4092"/>
+      <component num="7.e." name="Total noninterest expense" key="BHCK4093"/>
+    </component>
+    <component num="8." name="Income (loss) before applicable income taxes and discontinued operations" key="BHCK4301"/>
+    <component num="9." name="Applicable income taxes (foreign and domestic)" key="BHCK4302"/>
+    <component num="10." name="Income (loss) before extraordinary items and other adjustments" key="BHCK4300"/>
+    <component num="11." name="Extraordinary items and other adjustments, net of income taxes" key="BHCK4320"/>
+    <component num="12." name="Net income (loss) attributable to holding company and noncontrolling (minority) interests" key="BHCKG104"/>
+    <component num="13." name="LESS: Net income (loss) attributable to noncontrolling (minority) interests" key="BHCKG103"/>
+    <component num="14." name="Net income (loss) attributable to holding company" key="BHCK4340"/>
+  </schedule>
+  <schedule desig="HI_Memo" title = "Consolidated Income Statement">
+    <component num="5." name="Number of full-time equivalent employees at end of current period" key="BHCK4150"/>
+    <component num="6." name="Other noninterest income" key="NA">
+      <component num="6.a." name="Income and fees from the printing and sale of checks" key="BHCKC013"/>
+      <component num="6.b." name="Earnings on/increase in value of cash surrender value of life insurance" key="BHCKC014"/>
+      <component num="6.c." name="Income and fees from automated teller machines (ATMs)" key="BHCKC016"/>
+      <component num="6.d." name="Rent and other income from other real estate owned" key="BHCK4042"/>
+      <component num="6.e." name="Safe deposit box rent" key="BHCKC015"/>
+      <component num="6.f." name="Net change in the fair values of financial instruments accounted for under a fair value option" key="BHCKF229"/>
+      <component num="6.g." name="Bank card and credit card interchange fees" key="BHCKF555"/>
+      <component num="6.h." name="Gains on bargain purchases" key="BHCKJ447"/>
+    </component>
+    <component num="7." name="Other noninterest expense" key="NA">
+      <component num="7.a." name="Data processing expenses" key="BHCKC017"/>
+      <component num="7.b." name="Advertising and marketing expenses" key="BHCK0497"/>
+      <component num="7.c." name="Directors' fees" key="BHCK4136"/>
+      <component num="7.d." name="Printing, stationery, and supplies" key="BHCKC018"/>
+      <component num="7.e." name="Postage" key="BHCK8403"/>
+      <component num="7.f." name="Legal fees and expenses" key="BHCK4141"/>
+      <component num="7.g." name="FDIC deposit insurance assessments" key="BHCK4146"/>
+      <component num="7.h." name="Accounting and auditing expenses" key="BHCKF556"/>
+      <component num="7.i." name="Consulting and advisory expenses" key="BHCKF557"/>
+      <component num="7.j." name="Automated teller machine (ATM) and interchange expenses" key="BHCKF558"/>
+      <component num="7.k." name="Telecommunications expenses" key="BHCKF559"/>
+    </component>
+  </schedule>
+  <schedule desig="HC" title="Consolidated Balance Sheet">
+    <component num="1." name="Cash and balances due from depository institutions" key="NA">
+      <component num="1.a." name="Noninterest-bearing balances and currency and coin" key="BHCK0081"/>
+      <component num="1.b." name="Interest-bearing balances" key="NA">
+        <component num="1.b.(1)" name="In U.S. offices" key="BHCK0395"/>
+        <component num="1.b.(2)" name="In foreign offices, Edge and Agreement subsidiaries, and IBFs" key="BHCK0397"/>
+      </component>
+    </component>
+    <component num="2." name="Securities" key="NA">
+      <component num="2.a." name="Held-to-maturity securities" key="BHCK1754"/>
+      <component num="2.b." name="Available-for-sale securities" key="BHCK1773"/>
+    </component>
+    <component num="3." name="Federal funds sold and securities purchased under agreements to resell" key="NA">
+      <component num="3.a." name="Federal funds sold in domestic offices" key="BHDMB987"/>
+      <component num="3.b." name="Securities purchased under agreements to resell" key="BHCKB989"/>
+    </component>
+    <component num="4." name="Loans and lease financing receivables" key="NA">
+      <component num="4.a." name="Loans and leases held for sale" key="BHCK5369"/>
+      <component num="4.b." name="Loans and leases, held for investment" key="BHCKB528"/>
+      <component num="4.c." name="Allowance for loan and lease losses" key="BHCK3123"/>
+      <component num="4.d." name="Loans and leases, held for investment, net of allowance for loan and lease losses" key="BHCKB529"/>
+    </component>
+    <component num="5." name="Trading assets" key="BHCK3545"/>
+    <component num="6." name="Premises and fixed assets (including capitalized leases)" key="BHCK2145"/>
+    <component num="7." name="Other real estate owned" key="BHCK2150"/>
+    <component num="8." name="Investments in unconsolidated subsidiaries and associated companies" key="BHCK2130"/>
+    <component num="9." name="Direct and indirect investments in real estate ventures" key="BHCK3656"/>
+    <component num="10." name="" key="NA">
+      <component num="10.a." name="Goodwill" key="BHCK3163"/>
+      <component num="10.b." name="Other intangible assets" key="BHCK0426"/>
+    </component>
+    <component num="11." name="Other assets" key="BHCK2160"/>
+    <component num="12." name="Total assets" key="BHCK2170"/>
+    <component num="13." name="Deposits" key="NA">
+      <component num="13.a." name="In domestic offices" key="NA">
+        <component num="13.a.(1)" name="Noninterest-bearing" key="BHDM6631"/>
+        <component num="13.a.(2)" name="Interest-bearing" key="BHDM6636"/>
+      </component>
+      <component num="13.b." name="In foreign offices, Edge and Agreement subsidiaries, and IBFs" key="NA">
+        <component num="13.b.(1)" name="Noninterest-bearing" key="BHFN6631"/>
+        <component num="13.b.(2)" name="Interest-bearing" key="BHFN6636"/>
+      </component>
+    </component>
+    <component num="14." name="Federal funds purchased and securities sold under agreements to repurchase" key="NA">
+      <component num="14.a." name="Federal funds purchased in domestic offices" key="BHDMB993"/>
+      <component num="14.b." name="Securities sold under agreements to repurchase" key="BHCKB995"/>
+    </component>
+    <component num="15." name="Trading liabilities" key="BHCK3548"/>
+    <component num="16." name="Other borrowed money (includes mortgage indebtedness and obligations under capitalized leases)" key="BHCK3190"/>
+    <component num="17." name="Not applicable" key="NA"/>
+    <component num="18." name="Not applicable" key="NA"/>
+    <component num="19." name="" key="NA">
+      <component num="19.a." name="Subordinated notes and debentures" key="BHCK4062"/>
+      <component num="19.b." name="Subordinated notes payable to unconsolidated trusts issuing trust preferred securities, and trust preferred securities issued by consolidated special purpose entities" key="BHCKC699"/>
+    </component>
+    <component num="20." name="Other liabilities" key="BHCK2750"/>
+    <component num="21." name="Total liabilities" key="BHCK2948"/>
+    <component num="22." name="Not applicable" key="NA"/>
+    <component num="23." name="Perpetual preferred stock and related surplus" key="BHCK3283"/>
+    <component num="24." name="Common stock (par value)" key="BHCK3230"/>
+    <component num="25." name="Surplus (exclude all surplus related to preferred stock)" key="BHCK3240"/>
+    <component num="26." name="" key="NA">
+      <component num="26.a." name="Retained earnings" key="BHCK3247"/>
+      <component num="26.b." name="Accumulated other comprehensive income" key="BHCKB530"/>
+      <component num="26.c." name="Other equity capital components" key="BHCKA130"/>
+    </component>
+    <component num="27." name="" key="NA">
+      <component num="27.a." name="Total holding company equity capital" key="BHCK3210"/>
+      <component num="27.b." name="Noncontrolling (minority) interests in consolidated subsidiaries" key="BHCK3000"/>
+    </component>
+    <component num="28." name="Total equity capital" key="BHCKG105"/>
+    <component num="29." name="Total liabilities and equity capital" key="BHCK3300"/>
+  </schedule>
+  <schedule desig="HC-K" title="Quarterly Averages">
+    <component num="1." name="Securities" key="NA">
+      <component num="1.a." name="U.S. Treasury securities and U.S. government agency obligations (excluding mortgage-backed securities)" key="BHCKB558"/>
+      <component num="1.b." name="Mortgage-backed securities" key="BHCKB559"/>
+      <component num="1.c." name="All other securities (includes securities issued by states and political subdivisions in the U.S.)" key="BHCKB560"/>
+    </component>
+    <component num="2." name="Federal funds sold and securities purchased under agreements to resell" key="BHCK3365"/>
+    <component num="3." name="" key="NA">
+      <component num="3.a." name="Total loans and leases in domestic offices" key="BHDM3516">
+        <component num="3.a.(1)" name="Loans secured by 1â€“4 family residential properties" key="BHDM3465"/>
+        <component num="3.a.(2)" name="All other loans secured by real estate" key="BHDM3466"/>
+        <component num="3.a.(3)" name="Loans to finance agricultural production and other loans to farmers" key="BHDM3386"/>
+        <component num="3.a.(4)" name="Commercial and industrial loans" key="BHDM3387"/>
+        <component num="3.a.(5)" name="Loans to individuals for household, family, and other personal expenditures" key="NA">
+          <component num="3.a.(5)(a)" name="Credit cards" key="BHDMB561"/>
+          <component num="3.a.(5)(b)" name="Other (includes single payment, installment other than auto loans, all student loans, and revolving credit plans other than credit cards" key="BHDMB562"/>
+        </component>
+      </component>
+      <component num="3.b." name="Total loans and leases in foreign offices, Edge and agreement subsidiaries, and IBFs" key="BHFN3360"/>
+    </component>
+    <component num="4." name="" key="NA">
+      <component num="4.a." name="Trading assets" key="BHCK3401"/>
+      <component num="4.b." name="Other earning assets" key="BHCKB985"/>
+    </component>
+    <component num="5." name="Total consolidated assets" key="BHCK3368"/>
+    <component num="6." name="Interest-bearing deposits (domestic)" key="BHCK3517"/>
+    <component num="7." name="Interest-bearing deposits (foreign)" key="BHCK3404"/>
+    <component num="8." name="Federal funds purchased and securities sold under agreements to repurchase" key="BHCK3353"/>
+    <component num="9." name="All other borrowed money" key="BHCK2635"/>
+    <component num="10." name="Not Applicable" key="NA"/>
+    <component num="11." name="Total equity capital (excludes limited-life preferred stock)" key="BHCK3519"/>
+  </schedule>
+  <schedule desig="HC-R" title="Regulatory Capital">
+    <component num="19." name="Common equity tier 1 capital" key="BHCAP859"/>
+    <component num="25." name="Additional tier 1 capital" key="BHCAP865"/>
+    <component num="26." name="Tier 1 capital" key="BHCA8274"/>
+    <component num="34.a." name="Tier 2 capital" key="BHCA5311"/>
+    <component num="35.a." name="Total capital" key="BHCA3792"/>
+    <component num="39." name="Total assets for the leverage ratio" key="BHCAA224"/>
+    <component num="40.a." name="Total risk-weighted assets" key="BHCAA223"/>
+    <component num="41." name="Common equity tier 1 capital ratio" key="BHCAP793"/>
+    <component num="42." name="Tier 1 capital ratio" key="BHCA7206"/>
+    <component num="43." name="Total capital ratio" key="BHCA7205"/>
+    <component num="44." name="Tier 1 leverage ratio" key="BHCA7204"/>
+  </schedule>
+</FRY9C>
+
+
+
+
+
+

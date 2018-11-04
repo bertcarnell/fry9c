@@ -23,24 +23,31 @@ if (FALSE)
   X2Q15 <- get_fry9c_data(2015, 2)
   X3Q15 <- get_fry9c_data(2015, 3)
   X4Q15 <- get_fry9c_data(2015, 4)
+  X1Q14 <- get_fry9c_data(2014, 1)
+  X2Q14 <- get_fry9c_data(2014, 2, max_rows = 6000)
+  X3Q14 <- get_fry9c_data(2014, 3)
+  X4Q14 <- get_fry9c_data(2014, 4, max_rows = 6000)
 
   save(X1Q18, X2Q18,
        X4Q17, X3Q17, X2Q17, X1Q17,
        X4Q16, X3Q16, X2Q16, X1Q16,
        X4Q15, X3Q15, X2Q15, X1Q15,
+       X4Q14, X3Q14, X2Q14, X1Q14,
        file = file.path(fry_path, "fry9data.Rdata"))
 }
 load(file.path(fry_path, "fry9data.Rdata"))
 
-fry9c_data_list <- list(X1Q15, X2Q15, X3Q15, X4Q15,
+fry9c_data_list <- list(X1Q14, X2Q14, X3Q14, X4Q14,
+                        X1Q15, X2Q15, X3Q15, X4Q15,
                         X1Q16, X2Q16, X3Q16, X4Q16,
                         X1Q17, X2Q17, X3Q17, X4Q17,
-                        X1Q18, X2Q18
-)
+                        X1Q18, X2Q18)
+
 rm(X1Q18, X2Q18,
    X4Q17, X3Q17, X2Q17, X1Q17,
    X4Q16, X3Q16, X2Q16, X1Q16,
-   X4Q15, X3Q15, X2Q15, X1Q15)
+   X4Q15, X3Q15, X2Q15, X1Q15,
+   X4Q14, X3Q14, X2Q14, X1Q14)
 
 bank_meta_data <- get_bank_meta_data()
 
@@ -90,10 +97,11 @@ assertthat::assert_that(length(targets) == length(stock_sizes))
 
 target_ids <- get_bank_ids(targets, bank_meta_data)
 
-fry9cs <- fry9c_group$new(years = c(rep(2015, 4), rep(2016, 4), rep(2017, 4), 2018, 2018),
-                          quarters = c(1:4, 1:4, 1:4, 1:2))
+fry9cs <- fry9c_group$new(years = c(rep(2014, 4), rep(2015, 4), rep(2016, 4), rep(2017, 4), 2018, 2018),
+                          quarters = c(rep(1:4, times=4), 1:2))
 
 fry9cs$parse_fry9c(file.path(repositoryPath, "fry9c", "inst", "extdata", c(
+  "FR_Y-9C20140331.xml", "FR_Y-9C20140630.xml", "FR_Y-9C20140930.xml", "FR_Y-9C20141231.xml",
   "FR_Y-9C20150331.xml", "FR_Y-9C20150630.xml", "FR_Y-9C20150930.xml", "FR_Y-9C20151231.xml",
   "FR_Y-9C20160331.xml", "FR_Y-9C20160630.xml", "FR_Y-9C20160930.xml", "FR_Y-9C20161231.xml",
   "FR_Y-9C20170331.xml", "FR_Y-9C20170630.xml", "FR_Y-9C20170930.xml", "FR_Y-9C20171231.xml",
@@ -120,7 +128,9 @@ common_plots <- function(dat, nam)
     scale_y_continuous(name = paste0(nam, " / Average Assets"), labels = scales::percent) +
     xlab("Quarter") +
     scale_color_manual(values = stock_cols) +
-    scale_size_manual(values = stock_sizes)
+    scale_size_manual(values = stock_sizes) +
+    theme(legend.title = element_blank(),
+          axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
   g2 <- ggplot(dat, aes(x = quarter, y = common_value, group = bank, col = bank)) +
     facet_grid(. ~ year) +
@@ -129,7 +139,8 @@ common_plots <- function(dat, nam)
     scale_y_continuous(name = paste0("YTD ", nam, " / Average Assets"), labels = scales::percent) +
     xlab("Quarter") +
     scale_color_manual(values = stock_cols) +
-    scale_size_manual(values = stock_sizes)
+    scale_size_manual(values = stock_sizes) +
+    theme(legend.title = element_blank())
 
   g3 <- ggplot(subset(dat, year > 2016),
                aes(x = quarter, y = common_yoy, group = bank, col = bank)) +
@@ -139,7 +150,8 @@ common_plots <- function(dat, nam)
     scale_y_continuous(name = paste0("YOY Growth in ", nam, " / Average Assets"), labels = scales::percent) +
     xlab("Quarter") +
     scale_color_manual(values = stock_cols) +
-    scale_size_manual(values = stock_sizes)
+    scale_size_manual(values = stock_sizes) +
+    theme(legend.title = element_blank())
 
   plot(g1)
   plot(g2)
@@ -156,7 +168,9 @@ ggplot(asset_data, aes(x = x, y = value, group = bank, col = bank)) +
   scale_y_log10(name = "Total Assets (000s) (log scale)", labels = scales::dollar) +
   xlab("") +
   scale_color_manual(values = stock_cols) +
-  scale_size_manual(values = stock_sizes)
+  scale_size_manual(values = stock_sizes) +
+  theme(legend.title = element_blank(),
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
 interest_income_data <- fry9cs$get_plot_data("HI", "1.h.")
 common_plots(interest_income_data, "Interest Income")
