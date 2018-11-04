@@ -1,6 +1,3 @@
-# entity_type FHD default, NA means don't use it
-# most_recent takes the most recent entry, FALSE takes all entries
-
 #' Get bank IDs for target banks
 #'
 #' @param bank_names The names of the banks to be selected from the \code{bank_meta_data}
