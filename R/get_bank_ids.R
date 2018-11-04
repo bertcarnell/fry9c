@@ -1,6 +1,21 @@
 # entity_type FHD default, NA means don't use it
 # most_recent takes the most recent entry, FALSE takes all entries
 
+#' Get bank IDs for target banks
+#'
+#' @param bank_names The names of the banks to be selected from the \code{bank_meta_data}
+#' @param bank_meta_data a \code{data.frame} with columns for ID_RSSID, Entity_Type, Name
+#' @param entity_type The target entity type (Default: "FHD").  \code{NA} indicates the \code{entity_type} is not used.
+#' @param most_recent if \code{TRUE} then select the most recent entry.
+#'
+#' @return If most_recent is \code{TRUE} then a vector of one ID for each bank_name.  Otherwise, multiple IDs may be returned in a list
+#' @export
+#'
+#' @examples
+#' bank_meta_data <- get_rsids(file.path(fry_path, "hc-name-list.pdf"))
+#' targets <- c("HUNTINGTON BANCSHARES INCORPORATED", "KEYCORP", "PNC BANK CORP")
+#' target_ids <- get_bank_ids(targets, bank_meta_data)
+
 get_bank_ids <- function(bank_names, bank_meta_data, entity_type="FHD", most_recent=TRUE)
 {
   assertthat::assert_that(length(entity_type) == 1, msg = "entity type must be length 1")

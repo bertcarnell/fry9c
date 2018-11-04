@@ -1,9 +1,40 @@
-Component <- function(num, name, key)
-{
-  return(component$new(num, name, key))
-}
+assertthat::assert_that(require(R6))
 
-component <- R6Class("component",
+#' Class providing an object to manipulate a component of a schedule in a FR Y-9c
+#'
+#' @docType class
+#' @importFrom R6 R6Class
+#' @export
+#' @return Object of \code{\link{R6Class}}
+#' @format \code{\link{R6Class}} object.
+#' @examples
+#' x <- component$new("1.a.", "Income", "ZZZZ1234")
+#' @field num The line item number of a component of a schedule
+#' @field name The name of the line item number
+#' @field key The lookup key associated with the line item number
+#' @section Methods:
+#' \describe{
+#'   \item{Documentation}{}
+#'   \item{\code{new(num, name, key)}}{}
+#'   \item{\code{initializeData(dat)}}{}
+#'   \item{\code{add(comp)}}{}
+#'   \item{\code{export_csv()}}{}
+#'   \item{\code{print()}}{}
+#'   \item{\code{getValueFromKey(key)}}{}
+#'   \item{\code{getValueFromNum(num)}}{}
+#'   \item{\code{getCommonSizeValueFromNum(num)}}{}
+#'   \item{\code{getValue()}}{}
+#'   \item{\code{getCommonSizeValue}}{}
+#'   \item{\code{getKey()}}{}
+#'   \item{\code{getNum()}}{}
+#'   \item{\code{getName()}}{}
+#'   \item{\code{getAllValues()}}{}
+#'   \item{\code{getAllNums()}}{}
+#'   \item{\code{getAllNames()}}{}
+#'   \item{\code{commonSize(divisor)}}{}
+#' }
+
+component <- R6::R6Class("component",
                      public = list(
                        initialize = function(num, name, key)
                        {
@@ -175,3 +206,20 @@ component <- R6Class("component",
                        common_size_value = double()
                      )
 )
+
+#' @rdname component
+#'
+#' @param num The line item number of a component of a schedule
+#' @param name The name of the line item number
+#' @param key The lookup key associated with the line item number
+#'
+#' @return an object of class \code{component}
+#' @export
+#'
+#' @examples
+#' Component("1.a.", "Income", "ZZZZ1234")
+
+Component <- function(num, name, key)
+{
+  return(component$new(num, name, key))
+}

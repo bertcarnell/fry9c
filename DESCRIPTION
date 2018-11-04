@@ -3,10 +3,19 @@ Title: Interacting with the Federal Reserve Consolidated Financial Statements fo
 Version: 0.1.0.9000
 Authors@R: person("Robert", "Carnell", email = "bertcarnell@gmail.com", role = c("aut", "cre"))
 Description: An R package for interacting with the Federal Reserve Consolidated Financial Statements for Holding Companies (FR Y-9c). The package provides facilities to download, read, collect, and orgnanize data from the FR Y-9c.
-Depends: R (>= 3.4.2)
-License: GPL-v2
+Depends: R (>= 3.4.0)
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
+Imports: R6,
+         assertthat,
+         httr,
+         xml2
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2,
+    pdftools,
+    RColorBrewer,
+    lubridate
 VignetteBuilder: knitr
+RoxygenNote: 6.1.0

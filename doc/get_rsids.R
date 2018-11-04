@@ -1,3 +1,9 @@
+# Create a dataset from the Chicago Fed metadata
+
+# Procedure
+#  1. Download a new file from https://www.chicagofed.org/~/media/others/banking/financial-institution-reports/hc-name-list-pdf.pdf?la=en
+#  1. Read the data from /doc/hc-name-list.pdf
+
 # get reserve system IDs
 # ID_RSSD
 get_rsids <- function(file_name)

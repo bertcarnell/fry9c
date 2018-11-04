@@ -1,9 +1,38 @@
-Schedule <- function(desig, title)
-{
-  return(schedule$new(desig, title))
-}
+assertthat::assert_that(require(R6))
 
-schedule <- R6Class("schedule",
+#' Class providing an object to manipulate a schedule in a FR Y-9c
+#'
+#' @docType class
+#' @importFrom R6 R6Class
+#' @export
+#' @return Object of \code{\link{R6Class}}
+#' @format \code{\link{R6Class}} object.
+#' @examples
+#' x <- schedule$new("HI", "Income Statement")
+#' @field desig the designator of the schedule, e.g. "HI"
+#' @field title the title of the schedule
+#' @section Methods:
+#' \describe{
+#'   \item{Documentation}{}
+#'   \item{\code{new(desig, title)}}{}
+#'   \item{\code{initializeData(dat)}}{}
+#'   \item{\code{add(comp)}}{}
+#'   \item{\code{export_csv()}}{}
+#'   \item{\code{print()}}{}
+#'   \item{\code{getValueFromKey(key)}}{}
+#'   \item{\code{getValueFromNum(num)}}{}
+#'   \item{\code{getCommonSizeValueFromNum(num)}}{}
+#'   \item{\code{sumLevels(pos_num_list, neg_num_list)}}{}
+#'   \item{\code{getDesig()}}{}
+#'   \item{\code{getTitle()}}{}
+#'   \item{\code{getBankNames()}}{}
+#'   \item{\code{addBankNames(bank_names)}}{}
+#'   \item{\code{createDataFrame()}}{}
+#'   \item{\code{getComponent(index)}}{}
+#'   \item{\code{commonSize(divisor)}}{}
+#' }
+
+schedule <- R6::R6Class("schedule",
                     public = list(
                       initialize = function(desig, title)
                       {
@@ -175,3 +204,19 @@ schedule <- R6Class("schedule",
                       bank_names = character()
                     )
 )
+
+#' @rdname schedule
+#'
+#' @param desig the designator of the schedule, e.g. "HI"
+#' @param title the title of the schedule
+#'
+#' @return an object of class \code{schedule}
+#' @export
+#'
+#' @examples
+#' Schedule("HI", "Income Statement")
+
+Schedule <- function(desig, title)
+{
+  return(schedule$new(desig, title))
+}

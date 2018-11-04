@@ -41,9 +41,9 @@ parse_fry9c <- function(xml_filename, xsd_filename = NA)
     assertthat::assert_that(file.exists(xsd_filename))
     assertthat::assert_that(xml2::xml_validate(X, schema = xsd_filename))
   }
-  fry9c_attrs <- xml_attrs(X)
+  fry9c_attrs <- xml2::xml_attrs(X)
   fry9c <- Fry9c(fry9c_attrs["date"], fry9c_attrs["omb_number"], fry9c_attrs["title"])
-  fry9c_scheds <- xml_children(X)
+  fry9c_scheds <- xml2::xml_children(X)
   for (i in seq_along(fry9c_scheds))
   {
     fry9c$add(parse_schedule(fry9c_scheds[[i]]))
@@ -60,9 +60,9 @@ parse_fry9c <- function(xml_filename, xsd_filename = NA)
 parse_schedule <- function(nodeset)
 {
   #nodeset <- fry9c_scheds[[1]]
-  sched_attrs <- xml_attrs(nodeset)
+  sched_attrs <- xml2::xml_attrs(nodeset)
   sched <- Schedule(sched_attrs["desig"], sched_attrs["title"])
-  sched_components <- xml_children(nodeset)
+  sched_components <- xml2::xml_children(nodeset)
   for (i in seq_along(sched_components))
   {
     sched$add(parse_component(sched_components[[i]]))
@@ -78,16 +78,16 @@ parse_schedule <- function(nodeset)
 parse_component <- function(nodeset)
 {
   #nodeset <- sched_components[[1]]
-  comp_attrs <- xml_attrs(nodeset)
+  comp_attrs <- xml2::xml_attrs(nodeset)
   key <- ifelse(comp_attrs["key"] == "NA", NA, comp_attrs["key"])
   assertthat::assert_that(grepl(.num_pattern, comp_attrs["num"]),
                           msg = paste0(comp_attrs["num"], " does not match the pattern"))
   comp <- Component(num = comp_attrs["num"], name = comp_attrs["name"], key = key)
-  if (xml_length(nodeset) == 0)
+  if (xml2::xml_length(nodeset) == 0)
   {
     return(comp)
   }
-  comp_childs <- xml_children(nodeset)
+  comp_childs <- xml2::xml_children(nodeset)
   for (i in seq_along(comp_childs))
   {
     comp$add(parse_component(comp_childs[[i]]))
