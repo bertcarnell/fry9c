@@ -108,11 +108,7 @@ fry9cs$parse_fry9c(file.path(repositoryPath, "fry9c", "inst", "extdata", c(
   "FR_Y-9C20180331.xml", "FR_Y-9C20180630.xml"
 )))
 
-subset_ids <- function(target_ids, dat)
-{
-  dat[match(target_ids, dat$RSSD9001),]
-}
-fry9c_data_list_small <- lapply(fry9c_data_list, function(z) subset_ids(target_ids, z))
+fry9c_data_list_small <- lapply(fry9c_data_list, function(z) z[match(target_ids, z$RSSD9001),])
 
 fry9cs$initializeData(fry9c_data_list_small, targets_short)
 

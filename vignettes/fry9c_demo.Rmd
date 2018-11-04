@@ -14,52 +14,128 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+require(fry9c)
+require(RColorBrewer)
+require(ggplot2)
+require(scales)
+```
+## FR Y-9c
+
+From the U.S. Federal Reserve [website](https://www.federalreserve.gov/), the description and purpose of the FR Y-9c is:
+
+#### Description
+
+"This report collects basic financial data from a domestic bank holding company (BHC), a savings and loan holding company (SLHC), a U.S intermediate holding company (IHC) and a securities holding company (SHC) on a consolidated basis in the form of a balance sheet, an income statement, and detailed supporting schedules, including a schedule of off balance-sheet items."
+([1](https://www.federalreserve.gov/apps/reportforms/reportdetail.aspx?sOoYJ+5BzDal8cbqnRxZRg==))
+
+#### Purpose
+
+"The information is used to assess and monitor the financial condition of holding company organizations, which may include parent, bank, and nonbank entities. The FR Y-9C is a primary analytical tool used to monitor financial institutions between on-site inspections. The form contains more schedules than any of the FR Y-9 series of reports and is the most widely requested and reviewed report at the holding company level." ([1](https://www.federalreserve.gov/apps/reportforms/reportdetail.aspx?sOoYJ+5BzDal8cbqnRxZRg==))
+
+## Dowloading Data
+
+The first step is to download the FR Y-9c data from the Federal Reserve.
+
+```{r example_download, echo=FALSE}
+fry9c_data_list <- list(
+  read.csv(system.file(file.path("extdata", "ex_BHCF1712.csv"), package = "fry9c")),
+  read.csv(system.file(file.path("extdata", "ex_BHCF1812.csv"), package = "fry9c")))
+bank_meta_data <- read.csv(system.file(file.path("extdata", "ex_bank_meta_data.csv"), 
+                                       package = "fry9c"))
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r download, echo=TRUE, eval=FALSE}
+fry9c_data_list <- list(get_fry9c_data(2017, 4, verbose = FALSE),
+                        get_fry9c_data(2016, 4, verbose = FALSE))
+bank_meta_data <- get_bank_meta_data()
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+## Create a fry9c Object and Add Data
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+### Create objects
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r fry9c_object}
+my_fry9c_group <- Fry9c_group(years = c(2017, 2016),
+                      quarters = c(4, 4))
 ```
 
-Also a quote using `>`:
+### Select banks
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+Selecting a subset of banks is not required, but allows for a more focused inspection.
+
+```{r select_banks}
+# These names must match those in the bank_meta_data
+#   For example, search for PNC
+bank_meta_data[grep("PNC", bank_meta_data$Name),]
+
+targets <- c("PNC BANK CORP",
+             "U.S. BANCORP")
+
+# It is also helpfult to have shorter names like stock tickers
+targets_short <- c("PNC", "USB")
+assertthat::assert_that(length(targets) == length(targets_short))
+
+# Get the target ids
+target_ids <- get_bank_ids(targets, bank_meta_data)
+```
+
+### Initialize Objects
+
+```{r initialize_objects}
+# add the schedule and component definitions
+my_fry9c_group$parse_fry9c(
+  system.file(file.path("extdata", c("FR_Y-9C20171231.xml", "FR_Y-9C20161231.xml")), 
+              package = "fry9c"))
+
+# create a dataset with only the target banks
+fry9c_data_list_small <- lapply(fry9c_data_list, function(z) z[match(target_ids, z$RSSD9001),])
+
+# initialize the data
+my_fry9c_group$initializeData(fry9c_data_list_small, targets_short)
+
+# common size the Income Statements (HI and HI_Memo)
+my_fry9c_group$commonSize("HC-K", "5.", "HI")
+my_fry9c_group$commonSize("HC-K", "5.", "HI_Memo")
+```
+
+## Plotting
+
+### Setting up the color palette
+
+```{r setup_plots}
+pal <- brewer.pal(3, "Set1")
+stock_cols <- c("PNC" = pal[1],
+                "USB" = pal[2])
+assertthat::assert_that(length(targets) == length(stock_cols))
+stock_sizes <- c("PNC" = 1,
+                 "USB" = 2)
+assertthat::assert_that(length(targets) == length(stock_sizes))
+```
+
+### Plotting a time series
+
+```{r plot_timeseries}
+avg_asset_data <- my_fry9c_group$get_plot_data("HC-K", "5.")
+
+ggplot(avg_asset_data, aes(x = x, y = value, group = bank, col = bank)) +
+  geom_point(aes(size = bank)) +
+  geom_line() +
+  scale_y_log10(name = "Total Average Assets (000s) (log scale)", labels = scales::dollar) +
+  xlab("") +
+  scale_color_manual(values = stock_cols) +
+  scale_size_manual(values = stock_sizes) +
+  theme(legend.title = element_blank(),
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+
+interest_income_data <- my_fry9c_group$get_plot_data("HI", "1.h.")
+
+ggplot(interest_income_data, aes(x = x, y = common_value, group = bank, col = bank)) +
+  geom_point(aes(size = bank)) +
+  geom_line() +
+  scale_y_continuous(name = "Interest Income / Average Assets", labels = scales::percent) +
+  xlab("Quarter") +
+  scale_color_manual(values = stock_cols) +
+  scale_size_manual(values = stock_sizes) +
+  theme(legend.title = element_blank())
+
+```

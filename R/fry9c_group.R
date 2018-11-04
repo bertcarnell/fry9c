@@ -112,19 +112,24 @@ fry9c_group <- R6::R6Class("fry9c_group",
                                }
                              }
                            }
+                           # if the time series includes quarters, get the differences
                            temp$qdiff <- 0
                            temp$common_qdiff <- 0
                            for (y in seq_along(years))
                            {
-                             ind <- which(temp$year == years[y] & temp$quarter == 1)
-                             temp$qdiff[ind] <- temp$value[ind]
-                             temp$common_qdiff[ind] <- temp$common_value[ind]
-                             for (q in 2:4)
+                             # if there are 4 quarters in this year...
+                             if (length(which(temp$year == years[y])) == 4)
                              {
-                               ind <- which(temp$year == years[y] & temp$quarter == q)
-                               indearlier <- which(temp$year == years[y] & temp$quarter == q - 1)
-                               temp$qdiff[ind] <- temp$value[ind] - temp$value[indearlier]
-                               temp$common_qdiff[ind] <- temp$common_value[ind] - temp$common_value[indearlier]
+                               ind <- which(temp$year == years[y] & temp$quarter == 1)
+                               temp$qdiff[ind] <- temp$value[ind]
+                               temp$common_qdiff[ind] <- temp$common_value[ind]
+                               for (q in 2:4)
+                               {
+                                 ind <- which(temp$year == years[y] & temp$quarter == q)
+                                 indearlier <- which(temp$year == years[y] & temp$quarter == q - 1)
+                                 temp$qdiff[ind] <- temp$value[ind] - temp$value[indearlier]
+                                 temp$common_qdiff[ind] <- temp$common_value[ind] - temp$common_value[indearlier]
+                               }
                              }
                            }
                            temp$x <- paste0(temp$year, "Q", temp$quarter)
