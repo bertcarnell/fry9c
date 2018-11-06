@@ -11,6 +11,7 @@ To get the data definitions from the Consolidated Financial Statements for Holdi
 [here](https://www.federalreserve.gov/apps/reportforms/reportdetail.aspx?sOoYJ+5BzDal8cbqnRxZRg==)
 
 See also:
-[Chicago Fed Data](https://www.chicagofed.org/banking/financial-institution-reports/bhc-data)
-[National Information Center](https://www.ffiec.gov/nicpubweb/nicweb/nichome.aspx)
+
+- [Chicago Fed Data](https://www.chicagofed.org/banking/financial-institution-reports/bhc-data)
+- [National Information Center](https://www.ffiec.gov/nicpubweb/nicweb/nichome.aspx)
 
