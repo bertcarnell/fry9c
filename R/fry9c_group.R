@@ -1,15 +1,13 @@
 assertthat::assert_that(require(R6))
 
-#' Class providing an object to manipulate a group of FR Y-9c templates, typically
+#' @title Class providing an object to manipulate a group of FR Y-9c templates, typically
 #' used to manage FY Y-9c across years
+#' @name fry9c_group
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @export
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
-#' @examples
-#' x <- fry9c_group$new(c(2016, 2017), c(1, 1))
 #' @field fry9c_list a list of FR Y-9c objects
 #' @field years The year associated with FR Y-9c in the list
 #' @field quarters The quarter associated with each FR Y-9c in the list
@@ -26,7 +24,7 @@ assertthat::assert_that(require(R6))
 #'   \item{\code{print()}}{Print a summary of the collection contents}
 #' }
 
-fry9c_group <- R6::R6Class("fry9c_group",
+.fry9c_group <- R6::R6Class("fry9c_group",
                        public = list(
                          initialize = function(years, quarters)
                          {
@@ -171,11 +169,30 @@ fry9c_group <- R6::R6Class("fry9c_group",
 #' @export
 #'
 #' @examples
-#' Fry9c_group(rep(2015:2017, each=4), rep(1:4, times=3))
+#' # load example data
+#' fry9c_data_list <- list(
+#'   read.csv(system.file(file.path("extdata", "ex_BHCF1712.csv"), package = "fry9c")),
+#'   read.csv(system.file(file.path("extdata", "ex_BHCF1812.csv"), package = "fry9c")))
+#'
+#' my_fry9c_group <- Fry9c_group(years = c(2017, 2016),
+#'                               quarters = c(4, 4))
+#' my_fry9c_group$parse_fry9c(
+#'   system.file(file.path("extdata", c("FR_Y-9C20171231.xml", "FR_Y-9C20161231.xml")),
+#'               package = "fry9c"))
+#'
+#' my_fry9c_group$initializeData(fry9c_data_list, paste("bank", LETTERS[1:10], sep=""))
+#' print(my_fry9c_group)
+#' length(my_fry9c_group) == 2
+#'
+#' class(my_fry9c_group$get_fry9c(2016, 4))[1] == "fry9c"
+#'
+#' my_fry9c_group$commonSize("HC-K", "5.", "HI")
+#'
+#' nrow(my_fry9c_group$get_plot_data("HC-K", "5.")) == 20
 
 Fry9c_group <- function(years, quarters)
 {
-  return(fry9c_group$new(years, quarters))
+  return(.fry9c_group$new(years, quarters))
 }
 
 #' @rdname fry9c_group
@@ -187,10 +204,6 @@ Fry9c_group <- function(years, quarters)
 #' @export
 #'
 #' @return the number of \code{fry9c} objects in the group
-#'
-#' @examples
-#' x <- fry9c_group$new(c(2016, 2017), c(1, 1))
-#' length(x) == 2
 
 length.fry9c_group <- function(x, ...)
 {

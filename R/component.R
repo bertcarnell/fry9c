@@ -1,40 +1,41 @@
 assertthat::assert_that(require(R6))
 
-#' Class providing an object to manipulate a component of a schedule in a FR Y-9c
+#' @title Class providing an object to manipulate a component of a schedule in a FR Y-9c
+#' @name component
 #'
 #' @docType class
 #' @importFrom R6 R6Class
 #' @export
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
-#' @examples
-#' x <- component$new("1.a.", "Income", "ZZZZ1234")
 #' @field num The line item number of a component of a schedule
 #' @field name The name of the line item number
 #' @field key The lookup key associated with the line item number
+#' @field dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
+#' @field divisor a numeric that a \code{component}'s values are divided by
 #' @section Methods:
 #' \describe{
 #'   \item{Documentation}{}
-#'   \item{\code{new(num, name, key)}}{}
-#'   \item{\code{initializeData(dat)}}{}
-#'   \item{\code{add(comp)}}{}
-#'   \item{\code{export_csv()}}{}
-#'   \item{\code{print()}}{}
-#'   \item{\code{getValueFromKey(key)}}{}
-#'   \item{\code{getValueFromNum(num)}}{}
-#'   \item{\code{getCommonSizeValueFromNum(num)}}{}
-#'   \item{\code{getValue()}}{}
-#'   \item{\code{getCommonSizeValue}}{}
-#'   \item{\code{getKey()}}{}
-#'   \item{\code{getNum()}}{}
-#'   \item{\code{getName()}}{}
-#'   \item{\code{getAllValues()}}{}
-#'   \item{\code{getAllNums()}}{}
-#'   \item{\code{getAllNames()}}{}
-#'   \item{\code{commonSize(divisor)}}{}
+#'   \item{\code{new(num, name, key)}}{generate a new member of the class}
+#'   \item{\code{initializeData(dat)}}{initialize the values in each \code{component}}
+#'   \item{\code{add(comp)}}{add a sub-\code{component} to this component}
+#'   \item{\code{export_csv()}}{export this \code{component} in CSV format}
+#'   \item{\code{print()}}{print the \code{component} as a string}
+#'   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
+#'   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
+#'   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
+#'   \item{\code{getValue()}}{get the value of this object}
+#'   \item{\code{getCommonSizeValue}}{get the common-sized value of this object}
+#'   \item{\code{getKey()}}{get the \code{key} from this object}
+#'   \item{\code{getNum()}}{get the \code{num} from this object}
+#'   \item{\code{getName()}}{get the \code{name} from this object}
+#'   \item{\code{getAllValues()}}{get the values from this object and all sub-\code{component}s}
+#'   \item{\code{getAllNums()}}{get all the \code{num}s from this object and all sub-\code{component}s}
+#'   \item{\code{getAllNames()}}{get all the \code{name}s from this object and all sub-\code{component}s}
+#'   \item{\code{commonSize(divisor)}}{common-size this component using the \code{divisor}}
 #' }
 
-component <- R6::R6Class("component",
+.component <- R6::R6Class("component",
                      public = list(
                        initialize = function(num, name, key)
                        {
@@ -217,9 +218,26 @@ component <- R6::R6Class("component",
 #' @export
 #'
 #' @examples
-#' Component("1.a.", "Income", "ZZZZ1234")
+#' x <- Component("1.a.", "Income", "ZZZZ1234")
+#' x$add(Component("1.a.(1)", "Sub-Income", "ABCD5555"))
+#' x$initializeData(data.frame(ZZZZ1234 = 1:4,
+#'                             ABCD5555 = 5:8))
+#' x$export_csv()[1] == "1.a., Income, 1,2,3,4"
+#' print(x)
+#' all(x$getValueFromKey("ABCD5555") == 5:8)
+#' all(x$getValueFromNum("1.a.") == 1:4)
+#' all(x$getValue() == 1:4)
+#' x$getKey() == "ZZZZ1234"
+#' x$getNum() == "1.a."
+#' x$getName() == "Income"
+#' all(unlist(x$getAllValues()) == 1:8)
+#' all(unlist(x$getAllNums()) == c("1.a.", "1.a.(1)"))
+#' all(unlist(x$getAllNames() == c("Income", "Sub-Income")))
+#' x$commonSize(100)
+#' all.equal(x$getCommonSizeValueFromNum("1.a."), (1:4)/100)
+#' all.equal(x$getCommonSizeValue(), (1:4)/100)
 
 Component <- function(num, name, key)
 {
-  return(component$new(num, name, key))
+  return(.component$new(num, name, key))
 }

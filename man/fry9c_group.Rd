@@ -3,13 +3,14 @@
 \docType{class}
 \name{fry9c_group}
 \alias{fry9c_group}
+\alias{.fry9c_group}
 \alias{Fry9c_group}
 \alias{length.fry9c_group}
 \title{Class providing an object to manipulate a group of FR Y-9c templates, typically
 used to manage FY Y-9c across years}
 \format{\code{\link{R6Class}} object.}
 \usage{
-fry9c_group
+.fry9c_group
 
 Fry9c_group(years, quarters)
 
@@ -61,9 +62,25 @@ used to manage FY Y-9c across years
 }
 
 \examples{
-x <- fry9c_group$new(c(2016, 2017), c(1, 1))
-Fry9c_group(rep(2015:2017, each=4), rep(1:4, times=3))
-x <- fry9c_group$new(c(2016, 2017), c(1, 1))
-length(x) == 2
+# load example data
+fry9c_data_list <- list(
+  read.csv(system.file(file.path("extdata", "ex_BHCF1712.csv"), package = "fry9c")),
+  read.csv(system.file(file.path("extdata", "ex_BHCF1812.csv"), package = "fry9c")))
+
+my_fry9c_group <- Fry9c_group(years = c(2017, 2016),
+                              quarters = c(4, 4))
+my_fry9c_group$parse_fry9c(
+  system.file(file.path("extdata", c("FR_Y-9C20171231.xml", "FR_Y-9C20161231.xml")),
+              package = "fry9c"))
+
+my_fry9c_group$initializeData(fry9c_data_list, paste("bank", LETTERS[1:10], sep=""))
+print(my_fry9c_group)
+length(my_fry9c_group) == 2
+
+class(my_fry9c_group$get_fry9c(2016, 4))[1] == "fry9c"
+
+my_fry9c_group$commonSize("HC-K", "5.", "HI")
+
+nrow(my_fry9c_group$get_plot_data("HC-K", "5.")) == 20
 }
 \keyword{datasets}

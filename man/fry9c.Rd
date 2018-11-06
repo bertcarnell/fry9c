@@ -3,11 +3,12 @@
 \docType{class}
 \name{fry9c}
 \alias{fry9c}
+\alias{.fry9c}
 \alias{Fry9c}
 \title{Class providing an object to manipulate a FR Y-9c and component schedules}
 \format{\code{\link{R6Class}} object.}
 \usage{
-fry9c
+.fry9c
 
 Fry9c(date, omb_number, title)
 }
@@ -34,26 +35,45 @@ Class providing an object to manipulate a FR Y-9c and component schedules
 \item{\code{omb_number}}{The OMB number of the FR Y-9c documentation.  Something like "7100-0128"}
 
 \item{\code{title}}{The title of the FR Y-9c.  Something like "Consolidated Financial Statements for Holding Companies--FR Y-9c"}
+
+\item{\code{desig}}{An identifier for a component \code{schedule}}
+
+\item{\code{dat}}{A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s}
+
+\item{\code{bank_names}}{a vector of bank names to be stored in the \code{schedule}}
+
+\item{\code{output_file_name}}{the output filename for the Excel file}
 }}
 
 \section{Methods}{
 
 \describe{
   \item{Documentation}{}
-  \item{\code{new(date, omb_number, title)}}{}
-  \item{\code{add(sched)}}{}
-  \item{\code{getSchedule(desig)}}{}
-  \item{\code{initializeData(dat)}}{}
-  \item{\code{print()}}{}
-  \item{\code{addBankNames(bank_names)}}{}
-  \item{\code{exportExcel(output_file_name)}}{}
+  \item{\code{new(date, omb_number, title)}}{A generator for the \code{fry9c} class}
+  \item{\code{add(sched)}}{add a new \code{schedule}}
+  \item{\code{getSchedule(desig)}}{Get a \code{schedule} by the \code{desig}}
+  \item{\code{initializeData(dat)}}{initialize the values in each \code{schedule} and \code{component}}
+  \item{\code{print()}}{print the \code{schedule}s and \code{component}s as a string}
+  \item{\code{addBankNames(bank_names)}}{add \code{bank_names} to this object}
+  \item{\code{exportExcel(output_file_name)}}{export an Excel file}
 }
 }
 
 \examples{
-x <- fry9c$new("20180331", "7100-0128",
-               "Consolidated Financial Statements for Holding Companies--FR Y-9c")
-Fry9c("20180331", "7100-0128",
-      "Consolidated Financial Statements for Holding Companies--FR Y-9c")
+f <- Fry9c("20180331", "7100-0128",
+           "Consolidated Financial Statements for Holding Companies--FR Y-9c")
+x <- Schedule("HI", "Income Statement")
+y <- Component("1.a.", "Income", "ZZZZ1234")
+y$add(Component("1.a.(1)", "Sub-Income", "ABCD5555"))
+x$add(y)
+f$add(x)
+f$initializeData(data.frame(ZZZZ1234 = 1:4,
+                            ABCD5555 = 5:8))
+print(f)
+f$getSchedule("HI")$getDesig() == "HI"
+f$addBankNames(paste("bank", LETTERS[1:4], sep=""))
+\dontrun{
+  f$exportExcel(tempfile(fileext = ".xlsx"))
+}
 }
 \keyword{datasets}
