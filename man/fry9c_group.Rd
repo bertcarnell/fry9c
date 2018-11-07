@@ -10,7 +10,7 @@
 used to manage FY Y-9c across years}
 \format{\code{\link{R6Class}} object.}
 \usage{
-.fry9c_group
+(not recommended) .fry9c_group$new(years, quarters)
 
 Fry9c_group(years, quarters)
 

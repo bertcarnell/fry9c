@@ -5,7 +5,7 @@ assertthat::assert_that(require(R6))
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @export
+#' @usage (not recommended) .component$new(num, name, key)
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
 #' @field num The line item number of a component of a schedule

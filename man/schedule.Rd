@@ -8,7 +8,7 @@
 \title{Class providing an object to manipulate a schedule in a FR Y-9c}
 \format{\code{\link{R6Class}} object.}
 \usage{
-.schedule
+(not recommended) .schedule$new(desig, title)
 
 Schedule(desig, title)
 }

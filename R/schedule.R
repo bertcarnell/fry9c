@@ -5,7 +5,7 @@ assertthat::assert_that(require(R6))
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @export
+#' @usage (not recommended) .schedule$new(desig, title)
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
 #' @field desig the designator of the schedule, e.g. "HI"

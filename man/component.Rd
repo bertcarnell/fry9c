@@ -8,7 +8,7 @@
 \title{Class providing an object to manipulate a component of a schedule in a FR Y-9c}
 \format{\code{\link{R6Class}} object.}
 \usage{
-.component
+(not recommended) .component$new(num, name, key)
 
 Component(num, name, key)
 }
