@@ -116,19 +116,30 @@ assertthat::assert_that(require(R6))
                            temp$common_qdiff <- 0
                            for (y in seq_along(years))
                            {
-                             # if there are 4 quarters in this year...
-                             if (length(which(temp$year == years[y])) == 4)
+                             # if quarter 1 is present, use it
+                             ind <- which(temp$year == years[y] & temp$quarter == 1)
+                             temp$qdiff[ind] <- temp$value[ind]
+                             temp$common_qdiff[ind] <- temp$common_value[ind]
+                             # if quarter 1 and 2 are present, use them
+                             ind2 <- which(temp$year == years[y] & temp$quarter == 2)
+                             if (length(ind2) > 0 && length(ind) > 0)
                              {
-                               ind <- which(temp$year == years[y] & temp$quarter == 1)
-                               temp$qdiff[ind] <- temp$value[ind]
-                               temp$common_qdiff[ind] <- temp$common_value[ind]
-                               for (q in 2:4)
-                               {
-                                 ind <- which(temp$year == years[y] & temp$quarter == q)
-                                 indearlier <- which(temp$year == years[y] & temp$quarter == q - 1)
-                                 temp$qdiff[ind] <- temp$value[ind] - temp$value[indearlier]
-                                 temp$common_qdiff[ind] <- temp$common_value[ind] - temp$common_value[indearlier]
-                               }
+                               temp$qdiff[ind2] <- temp$value[ind2] - temp$value[ind]
+                               temp$common_qdiff[ind2] <- temp$common_value[ind2] - temp$common_value[ind]
+                             }
+                             # if quarter 2 and 3 are present
+                             ind3 <- which(temp$year == years[y] & temp$quarter == 3)
+                             if (length(ind3) > 0 && length(ind2) > 0)
+                             {
+                               temp$qdiff[ind3] <- temp$value[ind3] - temp$value[ind2]
+                               temp$common_qdiff[ind3] <- temp$common_value[ind3] - temp$common_value[ind2]
+                             }
+                             # if quarter 3 and 4 are present
+                             ind3 <- which(temp$year == years[y] & temp$quarter == 4)
+                             if (length(ind4) > 0 && length(ind3) > 0)
+                             {
+                               temp$qdiff[ind4] <- temp$value[ind4] - temp$value[ind3]
+                               temp$common_qdiff[ind4] <- temp$common_value[ind4] - temp$common_value[ind3]
                              }
                            }
                            temp$x <- paste0(temp$year, "Q", temp$quarter)
