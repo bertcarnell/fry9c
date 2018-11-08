@@ -19,8 +19,8 @@ assertthat::assert_that(require(R6))
 #'   \item{\code{parse_fry9c(files)}}{Parse a collection of \code{files} which each represent a FR Y-9c schema.}
 #'   \item{\code{initializeData(data_list, banks)}}{Parse a collection of FR Y-9c data files in \code{data_list}.  Also include a vector of \code{banks} that includes the names of the banks associated with the rows as they should appear in output.}
 #'   \item{\code{get_fry9c(year, quarter)}}{Extract a \code{fry9c} object from the collection associated with a \code{year} and \code{quarter}}
-#'   \item{\code{commonSize(divisor_sched, divisor_num, sched)}}{Common side the \code{sched} using the element from the \code{divisor_sched} and \code{divisor_num}.  This is usually done by common sizing an income statement with the average assets.}
-#'   \item{\code{get_plot_data(sched, num)}}{Create a \code{data.frame} that can be used for plotting using \code{ggplot2} by selecting a schedule \code{sched} and element number \code{num}}
+#'   \item{\code{commonSize(divisor_sched, divisor_key, sched)}}{Common side the \code{sched} using the element from the \code{divisor_sched} and \code{divisor_key}.  This is usually done by common sizing an income statement with the average assets.}
+#'   \item{\code{get_plot_data(sched, key)}}{Create a \code{data.frame} that can be used for plotting using \code{ggplot2} by selecting a schedule \code{sched} and element number \code{key}}
 #'   \item{\code{length()}}{Return the number of fry9c objects in the collection}
 #'   \item{\code{print()}}{Print a summary of the collection contents}
 #' }
@@ -65,15 +65,15 @@ assertthat::assert_that(require(R6))
                                             which(private$quarters == quarter))
                            return(private$fry9c_list[[ind]])
                          },
-                         commonSize = function(divisor_sched, divisor_num, sched)
+                         commonSize = function(divisor_sched, divisor_key, sched)
                          {
                            for (i in seq_along(private$years))
                            {
-                             divisor <- private$fry9c_list[[i]]$getSchedule(divisor_sched)$getValueFromNum(divisor_num)
+                             divisor <- private$fry9c_list[[i]]$getSchedule(divisor_sched)$getValueFromKey(divisor_key)
                              private$fry9c_list[[i]]$getSchedule(sched)$commonSize(divisor)
                            }
                          },
-                         get_plot_data = function(sched, num)
+                         get_plot_data = function(sched, key)
                          {
                            temp <- NULL
                            for (i in seq_along(private$years))
@@ -82,8 +82,8 @@ assertthat::assert_that(require(R6))
                                            data.frame(year = private$years[i],
                                                       quarter = private$quarters[i],
                                                       bank = private$fry9c_list[[i]]$getSchedule(sched)$getBankNames(),
-                                                      value = private$fry9c_list[[i]]$getSchedule(sched)$getValueFromNum(num),
-                                                      common_value = private$fry9c_list[[i]]$getSchedule(sched)$getCommonSizeValueFromNum(num),
+                                                      value = private$fry9c_list[[i]]$getSchedule(sched)$getValueFromKey(key),
+                                                      common_value = private$fry9c_list[[i]]$getSchedule(sched)$getCommonSizeValueFromKey(key),
                                                       stringsAsFactors = FALSE),
                                            stringsAsFactors = FALSE)
                            }
@@ -198,9 +198,9 @@ assertthat::assert_that(require(R6))
 #'
 #' class(my_fry9c_group$get_fry9c(2016, 4))[1] == "fry9c"
 #'
-#' my_fry9c_group$commonSize("HC-K", "5.", "HI")
+#' my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI") # 5.
 #'
-#' nrow(my_fry9c_group$get_plot_data("HC-K", "5.")) == 20
+#' nrow(my_fry9c_group$get_plot_data("HC-K", "BHCK3368")) == 20 # 5.
 
 Fry9c_group <- function(years, quarters)
 {
