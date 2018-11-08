@@ -135,7 +135,7 @@ assertthat::assert_that(require(R6))
                                temp$common_qdiff[ind3] <- temp$common_value[ind3] - temp$common_value[ind2]
                              }
                              # if quarter 3 and 4 are present
-                             ind3 <- which(temp$year == years[y] & temp$quarter == 4)
+                             ind4 <- which(temp$year == years[y] & temp$quarter == 4)
                              if (length(ind4) > 0 && length(ind3) > 0)
                              {
                                temp$qdiff[ind4] <- temp$value[ind4] - temp$value[ind3]
