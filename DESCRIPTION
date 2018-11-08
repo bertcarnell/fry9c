@@ -1,6 +1,6 @@
 Package: fry9c
 Title: Interacting with the Federal Reserve Consolidated Financial Statements for Holding Companies (FR Y-9c)
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: person("Robert", "Carnell", email = "bertcarnell@gmail.com", role = c("aut", "cre"))
 Description: An R package for interacting with the Federal Reserve Consolidated Financial Statements for Holding Companies (FR Y-9c). The package provides facilities to download, read, collect, and orgnanize data from the FR Y-9c.
 Depends: R (>= 3.4.0)
