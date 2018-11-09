@@ -8,7 +8,7 @@
 \title{Class providing an object to manipulate a FR Y-9c and component schedules}
 \format{\code{\link{R6Class}} object.}
 \usage{
-(not recommended) .fry9c$new(date, omb_number, title)
+.fry9c
 
 Fry9c(date, omb_number, title)
 }

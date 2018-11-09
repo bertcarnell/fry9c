@@ -8,7 +8,7 @@
 \title{Class providing an object to manipulate a schedule in a FR Y-9c}
 \format{\code{\link{R6Class}} object.}
 \usage{
-(not recommended) .schedule$new(desig, title)
+.schedule
 
 Schedule(desig, title)
 }
@@ -61,6 +61,7 @@ Class providing an object to manipulate a schedule in a FR Y-9c
   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
+  \item{\code{getCommonSizeValueFromKey(key)}}{get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}}
   \item{\code{sumLevels(pos_num_list, neg_num_list)}}{add or subtract the \code{component}s in this schedule}
   \item{\code{getDesig()}}{get the \code{desig} for this object}
   \item{\code{getTitle()}}{get the \code{title} for this object}
@@ -95,5 +96,6 @@ all(x$sumLevels("1.a.", "1.a.(1)") == 1:4 - 5:8)
 all(x$createDataFrame()$bankA == c(1,5))
 x$commonSize(100)
 all.equal(x$getCommonSizeValueFromNum("1.a."), (1:4)/100)
+all.equal(x$getCommonSizeValueFromKey("ZZZZ1234"), (1:4)/100)
 }
 \keyword{datasets}

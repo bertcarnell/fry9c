@@ -10,7 +10,7 @@
 used to manage FY Y-9c across years}
 \format{\code{\link{R6Class}} object.}
 \usage{
-(not recommended) .fry9c_group$new(years, quarters)
+.fry9c_group
 
 Fry9c_group(years, quarters)
 
@@ -54,8 +54,8 @@ used to manage FY Y-9c across years
   \item{\code{parse_fry9c(files)}}{Parse a collection of \code{files} which each represent a FR Y-9c schema.}
   \item{\code{initializeData(data_list, banks)}}{Parse a collection of FR Y-9c data files in \code{data_list}.  Also include a vector of \code{banks} that includes the names of the banks associated with the rows as they should appear in output.}
   \item{\code{get_fry9c(year, quarter)}}{Extract a \code{fry9c} object from the collection associated with a \code{year} and \code{quarter}}
-  \item{\code{commonSize(divisor_sched, divisor_num, sched)}}{Common side the \code{sched} using the element from the \code{divisor_sched} and \code{divisor_num}.  This is usually done by common sizing an income statement with the average assets.}
-  \item{\code{get_plot_data(sched, num)}}{Create a \code{data.frame} that can be used for plotting using \code{ggplot2} by selecting a schedule \code{sched} and element number \code{num}}
+  \item{\code{commonSize(divisor_sched, divisor_key, sched)}}{Common side the \code{sched} using the element from the \code{divisor_sched} and \code{divisor_key}.  This is usually done by common sizing an income statement with the average assets.}
+  \item{\code{get_plot_data(sched, key)}}{Create a \code{data.frame} that can be used for plotting using \code{ggplot2} by selecting a schedule \code{sched} and element number \code{key}}
   \item{\code{length()}}{Return the number of fry9c objects in the collection}
   \item{\code{print()}}{Print a summary of the collection contents}
 }
@@ -79,8 +79,8 @@ length(my_fry9c_group) == 2
 
 class(my_fry9c_group$get_fry9c(2016, 4))[1] == "fry9c"
 
-my_fry9c_group$commonSize("HC-K", "5.", "HI")
+my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI") # 5.
 
-nrow(my_fry9c_group$get_plot_data("HC-K", "5.")) == 20
+nrow(my_fry9c_group$get_plot_data("HC-K", "BHCK3368")) == 20 # 5.
 }
 \keyword{datasets}

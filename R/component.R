@@ -5,7 +5,6 @@ assertthat::assert_that(require(R6))
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @usage (not recommended) .component$new(num, name, key)
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
 #' @field num The line item number of a component of a schedule
@@ -24,6 +23,7 @@ assertthat::assert_that(require(R6))
 #'   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
 #'   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
 #'   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
+#'   \item{\code{getCommonSizeValueFromKey(key)}}{get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}}
 #'   \item{\code{getValue()}}{get the value of this object}
 #'   \item{\code{getCommonSizeValue}}{get the common-sized value of this object}
 #'   \item{\code{getKey()}}{get the \code{key} from this object}
@@ -108,6 +108,29 @@ assertthat::assert_that(require(R6))
                            }
                          }
                        },
+                       getNumFromKey = function(key)
+                       {
+                         if (!is.na(self$getKey()) && self$getKey() == key)
+                         {
+                           return(self$getNum())
+                         } else if (private$len == 0)
+                         {
+                           return(NULL)
+                         } else
+                         {
+                           for (i in 1:private$len)
+                           {
+                             if (!is.na(private$components[[i]]$getKey()) &&
+                                 private$components[[i]]$getKey() == key)
+                             {
+                               return(private$components[[i]]$getNum())
+                             } else {
+                               tmp <- private$components[[i]]$getNumFromKey(key)
+                               if (!is.null(tmp)) return(tmp)
+                             }
+                           }
+                         }
+                       },
                        getValueFromNum = function(num)
                        {
                          if (!is.na(self$getNum()) && self$getNum() == num)
@@ -147,6 +170,30 @@ assertthat::assert_that(require(R6))
                                return(private$components[[i]]$getCommonSizeValue())
                              } else {
                                tmp <- private$components[[i]]$getCommonSizeValueFromNum(num)
+                               if (!is.null(tmp)) return(tmp)
+                             }
+                           }
+                         }
+                       },
+                       getCommonSizeValueFromKey = function(key)
+                       {
+                         if (!is.na(self$getKey()) && self$getKey() == key)
+                         {
+                           return(self$getCommonSizeValue())
+                         } else if (private$len == 0)
+                         {
+                           return(NULL)
+                         } else
+                         {
+                           for (i in 1:private$len)
+                           {
+                             if (!is.na(private$components[[i]]$getKey()) &&
+                                  private$components[[i]]$getKey() == key)
+                             {
+                               return(private$components[[i]]$getCommonSizeValue())
+                             } else
+                             {
+                               tmp <- private$components[[i]]$getCommonSizeValueFromKey(key)
                                if (!is.null(tmp)) return(tmp)
                              }
                            }
@@ -235,6 +282,7 @@ assertthat::assert_that(require(R6))
 #' all(unlist(x$getAllNames() == c("Income", "Sub-Income")))
 #' x$commonSize(100)
 #' all.equal(x$getCommonSizeValueFromNum("1.a."), (1:4)/100)
+#' all.equal(x$getCommonSizeValueFromKey("ZZZZ1234"), (1:4)/100)
 #' all.equal(x$getCommonSizeValue(), (1:4)/100)
 
 Component <- function(num, name, key)

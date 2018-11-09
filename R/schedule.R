@@ -5,7 +5,6 @@ assertthat::assert_that(require(R6))
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @usage (not recommended) .schedule$new(desig, title)
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
 #' @field desig the designator of the schedule, e.g. "HI"
@@ -29,6 +28,7 @@ assertthat::assert_that(require(R6))
 #'   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
 #'   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
 #'   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
+#'   \item{\code{getCommonSizeValueFromKey(key)}}{get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}}
 #'   \item{\code{sumLevels(pos_num_list, neg_num_list)}}{add or subtract the \code{component}s in this schedule}
 #'   \item{\code{getDesig()}}{get the \code{desig} for this object}
 #'   \item{\code{getTitle()}}{get the \code{title} for this object}
@@ -94,6 +94,23 @@ assertthat::assert_that(require(R6))
                           }
                         }
                       },
+                      getNumFromKey = function(key)
+                      {
+                        if (private$len > 0)
+                        {
+                          for (i in 1:private$len)
+                          {
+                            if (!is.na(private$components[[i]]$getKey()) &&
+                                private$components[[i]]$getKey() == key)
+                            {
+                              return(private$components[[i]]$getNum())
+                            } else {
+                              tmp <- private$components[[i]]$getNumFromKey(key)
+                              if (!is.null(tmp)) return(tmp)
+                            }
+                          }
+                        }
+                      },
                       getValueFromNum = function(num)
                       {
                         if (private$len > 0)
@@ -121,6 +138,24 @@ assertthat::assert_that(require(R6))
                               return(private$components[[i]]$getCommonSizeValue())
                             } else {
                               tmp <- private$components[[i]]$getCommonSizeValueFromNum(num)
+                              if (!is.null(tmp)) return(tmp)
+                            }
+                          }
+                        }
+                      },
+                      getCommonSizeValueFromKey = function(key)
+                      {
+                        if (private$len > 0)
+                        {
+                          for (i in 1:private$len)
+                          {
+                            if (!is.na(private$components[[i]]$getKey()) &&
+                                private$components[[i]]$getKey() == key)
+                            {
+                              return(private$components[[i]]$getCommonSizeValue())
+                            } else
+                            {
+                              tmp <- private$components[[i]]$getCommonSizeValueFromKey(key)
                               if (!is.null(tmp)) return(tmp)
                             }
                           }
@@ -243,6 +278,7 @@ assertthat::assert_that(require(R6))
 #' all(x$createDataFrame()$bankA == c(1,5))
 #' x$commonSize(100)
 #' all.equal(x$getCommonSizeValueFromNum("1.a."), (1:4)/100)
+#' all.equal(x$getCommonSizeValueFromKey("ZZZZ1234"), (1:4)/100)
 
 Schedule <- function(desig, title)
 {

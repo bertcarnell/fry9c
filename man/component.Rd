@@ -8,7 +8,7 @@
 \title{Class providing an object to manipulate a component of a schedule in a FR Y-9c}
 \format{\code{\link{R6Class}} object.}
 \usage{
-(not recommended) .component$new(num, name, key)
+.component
 
 Component(num, name, key)
 }
@@ -53,6 +53,7 @@ Class providing an object to manipulate a component of a schedule in a FR Y-9c
   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
+  \item{\code{getCommonSizeValueFromKey(key)}}{get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}}
   \item{\code{getValue()}}{get the value of this object}
   \item{\code{getCommonSizeValue}}{get the common-sized value of this object}
   \item{\code{getKey()}}{get the \code{key} from this object}
@@ -83,6 +84,7 @@ all(unlist(x$getAllNums()) == c("1.a.", "1.a.(1)"))
 all(unlist(x$getAllNames() == c("Income", "Sub-Income")))
 x$commonSize(100)
 all.equal(x$getCommonSizeValueFromNum("1.a."), (1:4)/100)
+all.equal(x$getCommonSizeValueFromKey("ZZZZ1234"), (1:4)/100)
 all.equal(x$getCommonSizeValue(), (1:4)/100)
 }
 \keyword{datasets}

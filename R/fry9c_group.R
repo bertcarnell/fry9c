@@ -6,7 +6,6 @@ assertthat::assert_that(require(R6))
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @usage (not recommended) .fry9c_group$new(years, quarters)
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
 #' @field fry9c_list a list of FR Y-9c objects

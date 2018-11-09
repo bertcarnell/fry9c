@@ -5,7 +5,6 @@ assertthat::assert_that(require(R6))
 #'
 #' @docType class
 #' @importFrom R6 R6Class
-#' @usage (not recommended) .fry9c$new(date, omb_number, title)
 #' @return Object of \code{\link{R6Class}}
 #' @format \code{\link{R6Class}} object.
 #' @field date The date associated with the FR Y-9c

@@ -94,8 +94,8 @@ fry9c_data_list_small <- lapply(fry9c_data_list, function(z) z[match(target_ids,
 my_fry9c_group$initializeData(fry9c_data_list_small, targets_short)
 
 # common size the Income Statements (HI and HI_Memo)
-my_fry9c_group$commonSize("HC-K", "5.", "HI")
-my_fry9c_group$commonSize("HC-K", "5.", "HI_Memo")
+my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI")
+my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI_Memo")
 ```
 
 ## Plotting
@@ -115,7 +115,7 @@ assertthat::assert_that(length(targets) == length(stock_sizes))
 ### Plotting a time series
 
 ```{r plot_timeseries}
-avg_asset_data <- my_fry9c_group$get_plot_data("HC-K", "5.")
+avg_asset_data <- my_fry9c_group$get_plot_data("HC-K", "BHCK3368")
 
 ggplot(avg_asset_data, aes(x = x, y = value, group = bank, col = bank)) +
   geom_point(aes(size = bank)) +
@@ -127,7 +127,7 @@ ggplot(avg_asset_data, aes(x = x, y = value, group = bank, col = bank)) +
   theme(legend.title = element_blank(),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
 
-interest_income_data <- my_fry9c_group$get_plot_data("HI", "1.h.")
+interest_income_data <- my_fry9c_group$get_plot_data("HI", "BHCK4107")
 
 ggplot(interest_income_data, aes(x = x, y = common_value, group = bank, col = bank)) +
   geom_point(aes(size = bank)) +
