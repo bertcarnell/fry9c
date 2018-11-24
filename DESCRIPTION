@@ -11,12 +11,14 @@ Imports: R6,
          assertthat,
          httr,
          xml2
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown,
     ggplot2,
     scales,
     pdftools,
     RColorBrewer,
-    lubridate
+    lubridate,
+    testthat
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0

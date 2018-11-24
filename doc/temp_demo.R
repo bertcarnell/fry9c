@@ -2,6 +2,7 @@ require(ggplot2)
 require(assertthat)
 require(pdftools)
 require(RColorBrewer)
+require(fry9c)
 
 repositoryPath <- file.path("C:","Users","Rob","Documents","Repositories")
 
@@ -97,8 +98,8 @@ assertthat::assert_that(length(targets) == length(stock_sizes))
 
 target_ids <- get_bank_ids(targets, bank_meta_data)
 
-fry9cs <- fry9c_group$new(years = c(rep(2014, 4), rep(2015, 4), rep(2016, 4), rep(2017, 4), 2018, 2018),
-                          quarters = c(rep(1:4, times=4), 1:2))
+fry9cs <- Fry9c_group(years = c(rep(2014, 4), rep(2015, 4), rep(2016, 4), rep(2017, 4), 2018, 2018),
+                      quarters = c(rep(1:4, times=4), 1:2))
 
 fry9cs$parse_fry9c(file.path(repositoryPath, "fry9c", "inst", "extdata", c(
   "FR_Y-9C20140331.xml", "FR_Y-9C20140630.xml", "FR_Y-9C20140930.xml", "FR_Y-9C20141231.xml",
@@ -112,9 +113,8 @@ fry9c_data_list_small <- lapply(fry9c_data_list, function(z) z[match(target_ids,
 
 fry9cs$initializeData(fry9c_data_list_small, targets_short)
 
-fry9cs$commonSize("HC-K", "5.", "HI")
-fry9cs$commonSize("HC-K", "5.", "HI_Memo")
-
+fry9cs$commonSize("HC-K", "BHCK3368", "HI")
+fry9cs$commonSize("HC-K", "BHCK3368", "HI_Memo")
 
 common_plots <- function(dat, nam)
 {

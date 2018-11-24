@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include = FALSE, message = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -19,6 +19,7 @@ require(RColorBrewer)
 require(ggplot2)
 require(scales)
 ```
+
 ## FR Y-9c
 
 From the U.S. Federal Reserve [website](https://www.federalreserve.gov/), the description and purpose of the FR Y-9c is:
@@ -88,7 +89,8 @@ my_fry9c_group$parse_fry9c(
               package = "fry9c"))
 
 # create a dataset with only the target banks
-fry9c_data_list_small <- lapply(fry9c_data_list, function(z) z[match(target_ids, z$RSSD9001),])
+fry9c_data_list_small <- lapply(fry9c_data_list, function(z) {
+  z[match(target_ids, z$RSSD9001),]})
 
 # initialize the data
 my_fry9c_group$initializeData(fry9c_data_list_small, targets_short)
@@ -114,7 +116,7 @@ assertthat::assert_that(length(targets) == length(stock_sizes))
 
 ### Plotting a time series
 
-```{r plot_timeseries}
+```{r plot_timeseries, fig.width = 6, fig.height=5}
 avg_asset_data <- my_fry9c_group$get_plot_data("HC-K", "BHCK3368")
 
 ggplot(avg_asset_data, aes(x = x, y = value, group = bank, col = bank)) +
@@ -138,4 +140,46 @@ ggplot(interest_income_data, aes(x = x, y = common_value, group = bank, col = ba
   scale_size_manual(values = stock_sizes) +
   theme(legend.title = element_blank())
 
+```
+
+## Plotting the Distribution of Bank Performance
+
+```{r bank_dist, fig.width=6, fig.height=5}
+targets <- substring(bank_meta_data$Name[bank_meta_data$Entity_Type == "FHD"], 1, 20)
+target_ids <- get_bank_ids(targets, bank_meta_data)
+
+fry9c_data_list_FHD <- lapply(fry9c_data_list, function(z) {
+  z[match(target_ids, z$RSSD9001),]})
+
+my_fry9c_group$initializeData(fry9c_data_list_FHD, targets)
+
+my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI")
+my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI_Memo")
+
+avg_asset_data <- my_fry9c_group$get_plot_data("HC-K", "BHCK3368")
+
+ggplot(avg_asset_data, aes(x=value, group=year)) + 
+  geom_histogram(bins=20) +
+  facet_grid(.~year) +
+  scale_x_log10(name="Average Assets (000s) (log scale)", label = scales::dollar) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  ylab("Count (Example Data)")
+
+interest_income_data <- my_fry9c_group$get_plot_data("HI", "BHCK4107")
+interest_income_data$year <- factor(interest_income_data$year)
+
+ggplot(interest_income_data, aes(x = year, y = common_value, group = year)) + 
+  geom_boxplot() +
+  scale_y_continuous(name="Interest Income / Average Assets", label = scales::percent) +
+  xlab("")
+```
+
+### Note
+
+Care must be taken to ensure that a bank is not included in the data twice.  See
+J.P. Morgan below.
+
+```{r income_data}
+print(subset(interest_income_data,
+             select=c("year","quarter","bank","value","common_value")))
 ```

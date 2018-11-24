@@ -27,69 +27,86 @@ assertthat::assert_that(require(R6))
 #' }
 
 .fry9c <- R6::R6Class("fry9c",
-                 public = list(
-                   initialize = function(date, omb_number, title){
-                     private$date <- date
-                     private$omb_number <- omb_number
-                     private$title <- title
-                     private$len <- 0
-                   },
-                   add = function(sched)
-                   {
-                     private$schedules[[private$len + 1]] <- sched
-                     private$len <- private$len + 1
-                   },
-                   getSchedule = function(desig)
-                   {
-                     for (i in seq_along(private$schedules))
-                     {
-                       if (private$schedules[[i]]$getDesig() == desig)
-                         return(private$schedules[[i]])
-                     }
-                   },
-                   initializeData = function(dat)
-                   {
-                     for (i in seq_along(private$schedules))
-                     {
-                       private$schedules[[i]]$initializeData(dat)
-                     }
-                   },
-                   print = function()
-                   {
-                     cat(paste0("  ", private$title, "\n"))
-                     cat(paste0("  ", private$date, "\n"))
-                     if (private$len > 0)
-                     {
-                       for (i in 1:private$len)
-                       {
-                         sched <- private$schedules[[i]]
-                         cat(paste0("    Schedule ", sched$getDesig(), " ", sched$getTitle(), "\n"))
-                       }
-                     }
-                   },
-                   addBankNames = function(bank_names)
-                   {
-                     invisible(lapply(private$schedules, function(z) z$addBankNames(bank_names)))
-                   },
-                   exportExcel = function(output_file_name)
-                   {
-                     wb <- openxlsx::createWorkbook("fr y-9c")
-                     for (i in 1:private$len)
-                     {
-                       temp_sheetname <- paste("Schedule", private$schedules[[i]]$getDesig())
-                       openxlsx::addWorksheet(wb, temp_sheetname)
-                       openxlsx::writeData(wb, temp_sheetname, private$schedules[[i]]$createDataFrame())
-                     }
-                     openxlsx::saveWorkbook(wb, file = output_file_name, overwrite = FALSE)
-                   }
-                 ),
-                 private = list(
-                   date = character(),
-                   omb_number = character(),
-                   title = character(),
-                   len = integer(),
-                   schedules = list()
-                 )
+   public = list(
+     initialize = function(date, omb_number, title)
+     {
+       assertthat::assert_that(length(date) == 1 & length(omb_number) == 1 & length(title) == 1,
+                               msg = "fry9c can only initialize with length 1")
+       private$date <- date
+       private$omb_number <- omb_number
+       private$title <- title
+       private$len <- 0
+     },
+     add = function(sched)
+     {
+       assertthat::assert_that("schedule" %in% class(sched))
+       private$schedules[[private$len + 1]] <- sched
+       private$len <- private$len + 1
+     },
+     getSchedule = function(desig)
+     {
+       for (i in seq_along(private$schedules))
+       {
+         if (private$schedules[[i]]$getDesig() == desig)
+           return(private$schedules[[i]])
+       }
+     },
+     initializeData = function(dat)
+     {
+       assertthat::assert_that(is.data.frame(dat))
+       for (i in seq_along(private$schedules))
+       {
+         private$schedules[[i]]$initializeData(dat)
+       }
+     },
+     print = function()
+     {
+       cat(paste0("  ", private$title, "\n"))
+       cat(paste0("  ", private$date, "\n"))
+       if (private$len > 0)
+       {
+         for (i in 1:private$len)
+         {
+           sched <- private$schedules[[i]]
+           cat(paste0("    Schedule ", sched$getDesig(), " ", sched$getTitle(), "\n"))
+         }
+       }
+     },
+     addBankNames = function(bank_names)
+     {
+       invisible(lapply(private$schedules, function(z) z$addBankNames(bank_names)))
+     },
+     exportExcel = function(output_file_name)
+     {
+       wb <- openxlsx::createWorkbook("fr y-9c")
+       for (i in 1:private$len)
+       {
+         temp_sheetname <- paste("Schedule", private$schedules[[i]]$getDesig())
+         openxlsx::addWorksheet(wb, temp_sheetname)
+         openxlsx::writeData(wb, temp_sheetname, private$schedules[[i]]$createDataFrame())
+       }
+       openxlsx::saveWorkbook(wb, file = output_file_name, overwrite = FALSE)
+     },
+     getDate = function()
+     {
+       return(private$date)
+     },
+     getOmbNumber = function()
+     {
+       return(private$omb_number)
+     },
+     getTitle = function()
+     {
+       return(private$title)
+     }
+   ),
+   private = list(
+     date = character(),
+     omb_number = character(),
+     title = character(),
+     len = integer(),
+     schedules = list()
+   )
 )
 
 #' @rdname fry9c
