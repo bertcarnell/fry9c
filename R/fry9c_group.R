@@ -28,14 +28,16 @@ assertthat::assert_that(require(R6))
    public = list(
      initialize = function(years, quarters)
      {
-       assertthat::assert_that(length(years) == length(quarters), msg = "the length of years must match the length of the quarters")
+       assertthat::assert_that(length(years) == length(quarters),
+                               msg = "the length of years must match the length of the quarters")
        private$len <- length(years)
        private$years <- years
        private$quarters <- quarters
      },
      parse_fry9c = function(files)
      {
-       assertthat::assert_that(length(files) == private$len, msg = "the length of the supplied files must match the length of the years supplied")
+       assertthat::assert_that(length(files) == private$len,
+                               msg = "the length of the supplied files must match the length of the years supplied")
        private$fry9c_list <- vector("list", length(files))
        for (i in seq_along(files))
        {
@@ -44,31 +46,36 @@ assertthat::assert_that(require(R6))
      },
      initializeData = function(data_list, banks)
      {
-       assertthat::assert_that(length(data_list) == private$len)
+       assertthat::assert_that(length(data_list) == private$len,
+                               msg = "The length of the data_list object must match the length of the years the object was initialized with")
        for (i in seq_along(data_list))
        {
          tryCatch({
            private$fry9c_list[[i]]$initializeData(data_list[[i]])
+           private$fry9c_list[[i]]$addBankNames(banks)
          },
          error = function(e) {
            cat(paste0("Error in Y:", private$years[i], " Q:", private$quarters[i], "\n"))
-           return(e)
+           print(e)
          })
-         private$fry9c_list[[i]]$addBankNames(banks)
        }
      },
      get_fry9c = function(year, quarter)
      {
-       assertthat::assert_that(length(year) == 1 & length(quarter) == 1)
+       assertthat::assert_that(length(year) == 1 & length(quarter) == 1,
+                               msg = "The year and quarter arguments should have length 1")
        ind <- which(private$years == year & private$quarters == quarter)
-       assertthat::assert_that(length(ind) == 1, msg = "the requested year and quarter are not unique in the object or not found together")
+       assertthat::assert_that(length(ind) == 1,
+                               msg = "The requested year and quarter are not unique in the object or are not found together")
        return(private$fry9c_list[[ind]])
      },
      get_fry9c_list = function(years, quarters)
      {
-       assertthat::assert_that(length(years) == length(quarters))
+       assertthat::assert_that(length(years) == length(quarters),
+                               msg = "The length of the years and quarters must match")
        ind <- which(private$years %in% years & private$quarters %in% quarters)
-       assertthat::assert_that(length(ind) >= 1, msg = "the requested year and quarter are not found together")
+       assertthat::assert_that(length(ind) >= 1,
+                               msg = "the requested year and quarter are not found together")
        return(private$fry9c_list[ind])
      },
      commonSize = function(divisor_sched, divisor_key, sched)
@@ -81,7 +88,8 @@ assertthat::assert_that(require(R6))
      },
      get_plot_data = function(sched, key, num=NA)
      {
-       assertthat::assert_that(private$len > 0, msg = "No data has been added to the fry9c_group")
+       assertthat::assert_that(private$len > 0,
+                               msg = "No data has been added to the fry9c_group")
        if (missing(key))
        {
          if (is.na(num)) stop("must supply key or num")

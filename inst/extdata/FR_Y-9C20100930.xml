@@ -183,22 +183,12 @@
     <component num="29." name="Total liabilities and equity capital" key="BHCK3300"/>
   </schedule>
   <schedule desig="HC-K" title="Quarterly Averages">
-    <component num="1." name="Securities" key="NA">
-      <component num="1.a." name="U.S. Treasury securities and U.S. government agency obligations (excluding mortgage-backed securities)" key="BHCKB558"/>
-      <component num="1.b." name="Mortgage-backed securities" key="BHCKB559"/>
-      <component num="1.c." name="All other securities (includes securities issued by states and political subdivisions in the U.S.)" key="BHCKB560"/>
-    </component>
+    <component num="1." name="Securities" key="BHCK3515"/>
     <component num="2." name="Federal funds sold and securities purchased under agreements to resell" key="BHCK3365"/>
     <component num="3." name="" key="NA">
       <component num="3.a." name="Total loans and leases in domestic offices" key="BHDM3516">
         <component num="3.a.(1)" name="Loans secured by 1â€“4 family residential properties" key="BHDM3465"/>
         <component num="3.a.(2)" name="All other loans secured by real estate" key="BHDM3466"/>
-        <component num="3.a.(3)" name="Loans to finance agricultural production and other loans to farmers" key="BHDM3386"/>
-        <component num="3.a.(4)" name="Commercial and industrial loans" key="BHDM3387"/>
-        <component num="3.a.(5)" name="Loans to individuals for household, family, and other personal expenditures" key="NA">
-          <component num="3.a.(5)(a)" name="Credit cards" key="BHDMB561"/>
-          <component num="3.a.(5)(b)" name="Other (includes single payment, installment other than auto loans, all student loans, and revolving credit plans other than credit cards" key="BHDMB562"/>
-        </component>
       </component>
       <component num="3.b." name="Total loans and leases in foreign offices, Edge and agreement subsidiaries, and IBFs" key="BHFN3360"/>
     </component>
