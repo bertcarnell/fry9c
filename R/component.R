@@ -49,7 +49,7 @@ assertthat::assert_that(require(R6))
      },
      initializeData = function(dat)
      {
-       assertthat::assert_that(is.data.frame(dat))
+       assertthat::assert_that(is.data.frame(dat), msg = "Data is not contained in a data.frame in Component initializeData")
        private$value_len <- nrow(dat)
        if (is.na(private$key) || is.na(dat))
        {

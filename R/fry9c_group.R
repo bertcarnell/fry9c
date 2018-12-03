@@ -51,7 +51,7 @@ assertthat::assert_that(require(R6))
            private$fry9c_list[[i]]$initializeData(data_list[[i]])
          },
          error = function(e) {
-           cat(paste0("Error in Y:", private$years[i], " Q:", private$quarters[i]))
+           cat(paste0("Error in Y:", private$years[i], " Q:", private$quarters[i], "\n"))
            return(e)
          })
          private$fry9c_list[[i]]$addBankNames(banks)
