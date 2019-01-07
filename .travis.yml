@@ -1,0 +1,14 @@
+language: r
+
+matrix:
+  include:
+    - dist: xenial
+      r: release
+    - dist: trusty
+      r: devel
+    - os: osx
+      r: release
+
+cache: packages
+
+sudo: false
