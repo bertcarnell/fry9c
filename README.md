@@ -1,6 +1,8 @@
 # fry9c
 R package for interacting with the Federal Reserve Consolidated Financial Statements for Holding Companies (FR Y-9c)
 
+[![Build Status](https://travis-ci.org/bertcarnell/fry9c.svg?branch=master)](https://travis-ci.org/bertcarnell/fry9c)
+
 ## Data
 
 The Holding Company Names come from [here]( https://www.chicagofed.org/banking/financial-institution-reports/bhc-name-list)
