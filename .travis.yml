@@ -4,10 +4,10 @@ matrix:
   include:
     - dist: xenial
       r: release
-      apt-packages: libpoppler-cpp-dev
+      apt_packages: libpoppler-cpp-dev
     - dist: trusty
       r: devel
-      apt-packages: libpoppler-cpp-dev
+      apt_packages: libpoppler-cpp-dev
     - os: osx
       r: release
 
