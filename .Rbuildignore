@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 ^LICENSE$
 ^doc$
+^docs$
+^\.travis\.yml$
