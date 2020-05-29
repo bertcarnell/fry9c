@@ -2,10 +2,10 @@ language: r
 
 matrix:
   include:
-    - dist: xenial
+    - dist: bionic
       r: release
       apt_packages: libpoppler-cpp-dev
-    - dist: trusty
+    - dist: xenial
       r: devel
       apt_packages: libpoppler-cpp-dev
     - os: osx
