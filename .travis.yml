@@ -1,6 +1,8 @@
 language: r
+os: linux
+dist: xenial
 
-matrix:
+jobs:
   include:
     - dist: bionic
       r: release
@@ -12,5 +14,3 @@ matrix:
       r: release
 
 cache: packages
-
-sudo: false
