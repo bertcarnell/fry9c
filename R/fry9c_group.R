@@ -1,31 +1,15 @@
-assertthat::assert_that(require(R6))
-
 #' @title Class providing an object to manipulate a group of FR Y-9c templates, typically
 #' used to manage FY Y-9c across years
 #' @name fry9c_group
 #'
-#' @docType class
 #' @importFrom R6 R6Class
-#' @return Object of \code{\link{R6Class}}
-#' @format \code{\link{R6Class}} object.
-#' @field fry9c_list a list of FR Y-9c objects
-#' @field years The year associated with FR Y-9c in the list
-#' @field quarters The quarter associated with each FR Y-9c in the list
-#' @section Methods:
-#' \describe{
-#'   \item{Documentation}{}
-#'   \item{\code{new(years, quarters)}}{Creates object of this class with room for FR Y-9cs associated with each \code{year} adn \code{quarter}}
-#'   \item{\code{parse_fry9c(files)}}{Parse a collection of \code{files} which each represent a FR Y-9c schema.}
-#'   \item{\code{initializeData(data_list, banks)}}{Parse a collection of FR Y-9c data files in \code{data_list}.  Also include a vector of \code{banks} that includes the names of the banks associated with the rows as they should appear in output.}
-#'   \item{\code{get_fry9c(year, quarter)}}{Extract a \code{fry9c} object from the collection associated with a \code{year} and \code{quarter}}
-#'   \item{\code{commonSize(divisor_sched, divisor_key, sched)}}{Common side the \code{sched} using the element from the \code{divisor_sched} and \code{divisor_key}.  This is usually done by common sizing an income statement with the average assets.}
-#'   \item{\code{get_plot_data(sched, key)}}{Create a \code{data.frame} that can be used for plotting using \code{ggplot2} by selecting a schedule \code{sched} and element number \code{key}}
-#'   \item{\code{length()}}{Return the number of fry9c objects in the collection}
-#'   \item{\code{print()}}{Print a summary of the collection contents}
-#' }
 
 .fry9c_group <- R6::R6Class("fry9c_group",
    public = list(
+     #' @description
+     #' Initialize
+     #' @param years The year associated with FR Y-9c in the list
+     #' @param quarters The quarter associated with each FR Y-9c in the list
      initialize = function(years, quarters)
      {
        assertthat::assert_that(length(years) == length(quarters),
@@ -34,6 +18,9 @@ assertthat::assert_that(require(R6))
        private$years <- years
        private$quarters <- quarters
      },
+     #' @description
+     #' Parse a collection of \code{files} which each represent a FR Y-9c schema.
+     #' @param files file names
      parse_fry9c = function(files)
      {
        assertthat::assert_that(length(files) == private$len,
@@ -44,6 +31,10 @@ assertthat::assert_that(require(R6))
          private$fry9c_list[[i]] <- parse_fry9c(files[i])
        }
      },
+     #' @description
+     #' Parse a collection of FR Y-9c data files in \code{data_list}.  Also include a vector of \code{banks} that includes the names of the banks associated with the rows as they should appear in output.
+     #' @param data_list list of data objects
+     #' @param banks bank names
      initializeData = function(data_list, banks)
      {
        assertthat::assert_that(length(data_list) == private$len,
@@ -60,6 +51,10 @@ assertthat::assert_that(require(R6))
          })
        }
      },
+     #' @description
+     #' Extract a \code{fry9c} object from the collection associated with a \code{year} and \code{quarter}
+     #' @param year The year associated with FR Y-9c in the list
+     #' @param quarter The quarter associated with each FR Y-9c in the list
      get_fry9c = function(year, quarter)
      {
        assertthat::assert_that(length(year) == 1 & length(quarter) == 1,
@@ -69,6 +64,10 @@ assertthat::assert_that(require(R6))
                                msg = "The requested year and quarter are not unique in the object or are not found together")
        return(private$fry9c_list[[ind]])
      },
+     #' @description
+     #' Get a FRY-9C list
+     #' @param years The year associated with FR Y-9c in the list
+     #' @param quarters The quarter associated with each FR Y-9c in the list
      get_fry9c_list = function(years, quarters)
      {
        assertthat::assert_that(length(years) == length(quarters),
@@ -78,6 +77,11 @@ assertthat::assert_that(require(R6))
                                msg = "the requested year and quarter are not found together")
        return(private$fry9c_list[ind])
      },
+     #' @description
+     #' Common side the \code{sched} using the element from the \code{divisor_sched} and \code{divisor_key}.  This is usually done by common sizing an income statement with the average assets.
+     #' @param divisor_sched the schedule of the divisor
+     #' @param divisor_key the key of the divisor
+     #' @param sched the schedule
      commonSize = function(divisor_sched, divisor_key, sched)
      {
        for (i in seq_along(private$years))
@@ -86,6 +90,11 @@ assertthat::assert_that(require(R6))
          private$fry9c_list[[i]]$getSchedule(sched)$commonSize(divisor)
        }
      },
+     #' @description
+     #' Create a \code{data.frame} that can be used for plotting using \code{ggplot2} by selecting a schedule \code{sched} and element number \code{key}
+     #' @param sched the schedule
+     #' @param num the schedule element
+     #' @param key the key in the schedule
      get_plot_data = function(sched, key, num=NA)
      {
        assertthat::assert_that(private$len > 0,
@@ -105,7 +114,7 @@ assertthat::assert_that(require(R6))
            key <- keys[1]
          } else
          {
-           stop(paste("the supplied num ", num, " is associated with multiple keys through this group: keys = ", paste(keys, collapse=",")))
+           stop(paste("the supplied num ", num, " is associated with multiple keys through this group: keys = ", paste(keys, collapse = ",")))
          }
        }
        temp <- NULL
@@ -178,10 +187,14 @@ assertthat::assert_that(require(R6))
        temp$x <- paste0(temp$year, "Q", temp$quarter)
        return(temp)
      },
+     #' @description
+     #' Return the number of fry9c objects in the collection
      length = function()
      {
        return(private$len)
      },
+     #' @description
+     #' Print a summary of the collection contents
      print = function()
      {
        if (private$len == 0)

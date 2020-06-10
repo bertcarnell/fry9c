@@ -1,46 +1,14 @@
-assertthat::assert_that(require(R6))
-
 #' @title Class providing an object to manipulate a schedule in a FR Y-9c
 #' @name schedule
 #'
-#' @docType class
 #' @importFrom R6 R6Class
-#' @return Object of \code{\link{R6Class}}
-#' @format \code{\link{R6Class}} object.
-#' @field desig the designator of the schedule, e.g. "HI"
-#' @field title the title of the schedule
-#' @field dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
-#' @field comp a \code{component}
-#' @field num The line item number of a component of a schedule
-#' @field key The lookup key associated with the line item number
-#' @field index the index of the desired \code{component} in the \code{schedule}
-#' @field bank_names a vector of bank names to be stored in the \code{schedule}
-#' @field pos_num_list a vector of \code{component} \code{num}s to be added
-#' @field neg_num_list a vector of \code{component} \code{num}s to be subtracted
-#' @section Methods:
-#' \describe{
-#'   \item{Documentation}{}
-#'   \item{\code{new(desig, title)}}{generate a new \code{schedule}}
-#'   \item{\code{initializeData(dat)}}{initialize the values in each \code{schedule}}
-#'   \item{\code{add(comp)}}{add a \code{component} to this \code{schedule}}
-#'   \item{\code{export_csv()}}{export this \code{schedule} in CSV format}
-#'   \item{\code{print()}}{print the \code{schedule} as a string}
-#'   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
-#'   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
-#'   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
-#'   \item{\code{getCommonSizeValueFromKey(key)}}{get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}}
-#'   \item{\code{sumLevels(pos_num_list, neg_num_list)}}{add or subtract the \code{component}s in this schedule}
-#'   \item{\code{getDesig()}}{get the \code{desig} for this object}
-#'   \item{\code{getTitle()}}{get the \code{title} for this object}
-#'   \item{\code{getBankNames()}}{get the \code{bank_names} assigned to this object}
-#'   \item{\code{addBankNames(bank_names)}}{add \code{bank_names} to this object}
-#'   \item{\code{createDataFrame()}}{create a \code{data.frame} from the \code{component}s in this object}
-#'   \item{\code{getComponent(index)}}{get a \code{component} by its index in the \code{schedule}}
-#'   \item{\code{commonSize(divisor)}}{common-size the \code{component}s in this \code{schedule} using the \code{divisor}}
-#' }
 
 .schedule <- R6::R6Class("schedule",
   public = list(
+    #' @description
+    #' Initialize an object
+    #' @param desig the designator of the schedule, e.g. "HI"
+    #' @param title the title of the schedule
     initialize = function(desig, title)
     {
       assertthat::assert_that(length(desig) == 1 & length(title) == 1)
@@ -48,6 +16,9 @@ assertthat::assert_that(require(R6))
       private$title <- title
       private$len <- 0
     },
+    #' @description
+    #' initialize the values in each \code{schedule}
+    #' @param dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
     initializeData = function(dat)
     {
       assertthat::assert_that(is.data.frame(dat), msg = "Can only initialize data with a data.frame")
@@ -55,12 +26,17 @@ assertthat::assert_that(require(R6))
       private$value_len <- nrow(dat)
       dummy <- lapply(private$components, function(x) x$initializeData(dat))
     },
+    #' @description
+    #' add a \code{component} to this \code{schedule}
+    #' @param comp a component
     add = function(comp)
     {
       assertthat::assert_that("component" %in% class(comp), msg = "Can only add components")
       private$components[[private$len + 1]] <- comp
       private$len <- private$len + 1
     },
+    #' @description
+    #' export this \code{schedule} in CSV format
     export_csv = function()
     {
       temp <- paste0("Schedule ", private$desig, ", ", private$title, ", ")
@@ -70,6 +46,8 @@ assertthat::assert_that(require(R6))
       }
       return(temp)
     },
+    #' @description
+    #' print the \code{schedule} as a string
     print = function()
     {
       cat(paste0("Schedule ", private$desig, " ", private$title), "\n")
@@ -78,6 +56,11 @@ assertthat::assert_that(require(R6))
         lapply(private$components, print)
       }
     },
+    #' @description
+    #' Get metric from key or num
+    #' @param num The line item number of a component of a schedule
+    #' @param key The lookup key associated with the line item number
+    #' @param metric the metric
     getMetricFrom = function(key, num=NA, metric=.metric$value)
     {
       if (!missing(key))
@@ -115,6 +98,10 @@ assertthat::assert_that(require(R6))
         stop("Must supply key or num")
       }
     },
+    #' @description
+    #' get component from key and num
+    #' @param num The line item number of a component of a schedule
+    #' @param key The lookup key associated with the line item number
     getComponentFrom = function(key, num=NA)
     {
       if (!missing(key))
@@ -162,34 +149,59 @@ assertthat::assert_that(require(R6))
         stop("Must supply key or num")
       }
     },
+    #' @description
+    #' get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}
+    #' @param key The lookup key associated with the line item number
     getValueFromKey = function(key)
     {
       self$getMetricFrom(key, metric = .metric$value)
     },
+    #' @description
+    #' get num from key
+    #' @param key The lookup key associated with the line item number
     getNumFromKey = function(key)
     {
       self$getMetricFrom(key, metric = .metric$num)
     },
+    #' @description
+    #' get key from num
+    #' @param num The line item number of a component of a schedule
     getKeyFromNum = function(num)
     {
       self$getMetricFrom(num = num, metric = .metric$key)
     },
+    #' @description
+    #' get a \code{component} value from the \code{component} number in this object or a sub-\code{component}
+    #' @param num The line item number of a component of a schedule
     getValueFromNum = function(num)
     {
       self$getMetricFrom(num = num, metric = .metric$value)
     },
+    #' @description
+    #' get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}
+    #' @param num The line item number of a component of a schedule
     getCommonSizeValueFromNum = function(num)
     {
       self$getMetricFrom(num = num, metric = .metric$common_size_value)
     },
+    #' @description
+    #' get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}
+    #' @param key The lookup key associated with the line item number
     getCommonSizeValueFromKey = function(key)
     {
       self$getMetricFrom(key, metric = .metric$common_size_value)
     },
+    #' @description
+    #' get component from key
+    #' @param key The lookup key associated with the line item number
     getComponentFromKey = function(key)
     {
       self$getComponentFrom(key)
     },
+    #' @description
+    #' add or subtract the \code{component}s in this schedule
+    #' @param pos_num_list a vector of \code{component} \code{num}s to be added
+    #' @param neg_num_list a vector of \code{component} \code{num}s to be subtracted
     sumLevels = function(pos_num_list, neg_num_list)
     {
       temp <- matrix(0, ncol = length(pos_num_list), nrow = private$value_len)
@@ -222,18 +234,27 @@ assertthat::assert_that(require(R6))
       }
       return(apply(temp, 1, sum, na.rm = TRUE) - apply(tempneg, 1, sum, na.rm = TRUE))
     },
+    #' @description
+    #' get the \code{desig} for this object
     getDesig = function()
     {
       return(private$desig)
     },
+    #' @description
+    #' get the \code{title} for this object
     getTitle = function()
     {
       return(private$title)
     },
+    #' @description
+    #' get the \code{bank_names} assigned to this object
     getBankNames = function()
     {
       return(private$bank_names)
     },
+    #' @description
+    #' add \code{bank_names} to this object
+    #' @param bank_names a vector of bank names to be stored in the \code{schedule}
     addBankNames = function(bank_names)
     {
       assertthat::assert_that(length(bank_names) == private$value_len,
@@ -241,6 +262,8 @@ assertthat::assert_that(require(R6))
                                            " vs ", private$value_len))
       private$bank_names <- bank_names
     },
+    #' @description
+    #' create a \code{data.frame} from the \code{component}s in this object
     createDataFrame = function()
     {
       assertthat::assert_that(private$len > 0, msg = "Cannot create a data.frame from a schedule with no components")
@@ -256,10 +279,16 @@ assertthat::assert_that(require(R6))
       names(temp) <- dat_names
       return(temp)
     },
+    #' @description
+    #' get a \code{component} by its index in the \code{schedule}
+    #' @param index the index of the component
     getComponent = function(index)
     {
       return(private$components[[index]])
     },
+    #' @description
+    #' common-size the \code{component}s in this \code{schedule} using the \code{divisor}
+    #' @param divisor common size divisor
     commonSize = function(divisor)
     {
       if (private$len > 0)

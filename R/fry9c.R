@@ -1,33 +1,15 @@
-assertthat::assert_that(require(R6))
-
 #' @title Class providing an object to manipulate a FR Y-9c and component schedules
 #' @name fry9c
 #'
-#' @docType class
 #' @importFrom R6 R6Class
-#' @return Object of \code{\link{R6Class}}
-#' @format \code{\link{R6Class}} object.
-#' @field date The date associated with the FR Y-9c
-#' @field omb_number The OMB number of the FR Y-9c documentation.  Something like "7100-0128"
-#' @field title The title of the FR Y-9c.  Something like "Consolidated Financial Statements for Holding Companies--FR Y-9c"
-#' @field desig An identifier for a component \code{schedule}
-#' @field dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
-#' @field bank_names a vector of bank names to be stored in the \code{schedule}
-#' @field output_file_name the output filename for the Excel file
-#' @section Methods:
-#' \describe{
-#'   \item{Documentation}{}
-#'   \item{\code{new(date, omb_number, title)}}{A generator for the \code{fry9c} class}
-#'   \item{\code{add(sched)}}{add a new \code{schedule}}
-#'   \item{\code{getSchedule(desig)}}{Get a \code{schedule} by the \code{desig}}
-#'   \item{\code{initializeData(dat)}}{initialize the values in each \code{schedule} and \code{component}}
-#'   \item{\code{print()}}{print the \code{schedule}s and \code{component}s as a string}
-#'   \item{\code{addBankNames(bank_names)}}{add \code{bank_names} to this object}
-#'   \item{\code{exportExcel(output_file_name)}}{export an Excel file}
-#' }
 
 .fry9c <- R6::R6Class("fry9c",
    public = list(
+     #' @description
+     #' initialize the class
+     #' @param date The date associated with the FR Y-9c
+     #' @param omb_number The OMB number of the FR Y-9c documentation.  Something like "7100-0128"
+     #' @param title The title of the FR Y-9c.  Something like "Consolidated Financial Statements for Holding Companies--FR Y-9c"
      initialize = function(date, omb_number, title)
      {
        assertthat::assert_that(length(date) == 1 & length(omb_number) == 1 & length(title) == 1,
@@ -37,12 +19,18 @@ assertthat::assert_that(require(R6))
        private$title <- title
        private$len <- 0
      },
+     #' @description
+     #' add a new \code{schedule}
+     #' @param sched a schedule
      add = function(sched)
      {
        assertthat::assert_that("schedule" %in% class(sched))
        private$schedules[[private$len + 1]] <- sched
        private$len <- private$len + 1
      },
+     #' @description
+     #' Get a \code{schedule} by the \code{desig}
+     #' @param desig An identifier for a component \code{schedule}
      getSchedule = function(desig)
      {
        for (i in seq_along(private$schedules))
@@ -51,6 +39,9 @@ assertthat::assert_that(require(R6))
            return(private$schedules[[i]])
        }
      },
+     #' @description
+     #' initialize the values in each \code{schedule} and \code{component}
+     #' @param dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
      initializeData = function(dat)
      {
        assertthat::assert_that(is.data.frame(dat))
@@ -59,6 +50,8 @@ assertthat::assert_that(require(R6))
          private$schedules[[i]]$initializeData(dat)
        }
      },
+     #' @description
+     #' print the \code{schedule}s and \code{component}s as a string
      print = function()
      {
        cat(paste0("  ", private$title, "\n"))
@@ -72,10 +65,16 @@ assertthat::assert_that(require(R6))
          }
        }
      },
+     #' @description
+     #' add \code{bank_names} to this object
+     #' @param bank_names a vector of bank names to be stored in the \code{schedule}
      addBankNames = function(bank_names)
      {
        invisible(lapply(private$schedules, function(z) z$addBankNames(bank_names)))
      },
+     #' @description
+     #' export an Excel file
+     #' @param output_file_name output file name
      exportExcel = function(output_file_name)
      {
        wb <- openxlsx::createWorkbook("fr y-9c")
@@ -87,14 +86,20 @@ assertthat::assert_that(require(R6))
        }
        openxlsx::saveWorkbook(wb, file = output_file_name, overwrite = FALSE)
      },
+     #' @description
+     #' Get the Date
      getDate = function()
      {
        return(private$date)
      },
+     #' @description
+     #' get the OMB number
      getOmbNumber = function()
      {
        return(private$omb_number)
      },
+     #' @description
+     #' Get the title
      getTitle = function()
      {
        return(private$title)

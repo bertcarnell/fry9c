@@ -1,42 +1,15 @@
-assertthat::assert_that(require(R6))
-
 #' @title Class providing an object to manipulate a component of a schedule in a FR Y-9c
 #' @name component
 #'
-#' @docType class
 #' @importFrom R6 R6Class
-#' @return Object of \code{\link{R6Class}}
-#' @format \code{\link{R6Class}} object.
-#' @field num The line item number of a component of a schedule
-#' @field name The name of the line item number
-#' @field key The lookup key associated with the line item number
-#' @field dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
-#' @field divisor a numeric that a \code{component}'s values are divided by
-#' @section Methods:
-#' \describe{
-#'   \item{Documentation}{}
-#'   \item{\code{new(num, name, key)}}{generate a new member of the class}
-#'   \item{\code{initializeData(dat)}}{initialize the values in each \code{component}}
-#'   \item{\code{add(comp)}}{add a sub-\code{component} to this component}
-#'   \item{\code{export_csv()}}{export this \code{component} in CSV format}
-#'   \item{\code{print()}}{print the \code{component} as a string}
-#'   \item{\code{getValueFromKey(key)}}{get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}}
-#'   \item{\code{getValueFromNum(num)}}{get a \code{component} value from the \code{component} number in this object or a sub-\code{component}}
-#'   \item{\code{getCommonSizeValueFromNum(num)}}{get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}}
-#'   \item{\code{getCommonSizeValueFromKey(key)}}{get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}}
-#'   \item{\code{getValue()}}{get the value of this object}
-#'   \item{\code{getCommonSizeValue}}{get the common-sized value of this object}
-#'   \item{\code{getKey()}}{get the \code{key} from this object}
-#'   \item{\code{getNum()}}{get the \code{num} from this object}
-#'   \item{\code{getName()}}{get the \code{name} from this object}
-#'   \item{\code{getAllValues()}}{get the values from this object and all sub-\code{component}s}
-#'   \item{\code{getAllNums()}}{get all the \code{num}s from this object and all sub-\code{component}s}
-#'   \item{\code{getAllNames()}}{get all the \code{name}s from this object and all sub-\code{component}s}
-#'   \item{\code{commonSize(divisor)}}{common-size this component using the \code{divisor}}
-#' }
 
 .component <- R6::R6Class("component",
   public = list(
+     #' @description
+     #' initialize the values in each \code{component}
+     #' @param num The line item number of a component of a schedule
+     #' @param name The name of the line item number
+     #' @param key The lookup key associated with the line item number
      initialize = function(num, name, key)
      {
        assertthat::assert_that(length(num) == 1)
@@ -47,6 +20,9 @@ assertthat::assert_that(require(R6))
        private$key <- key
        private$len <- 0
      },
+     #' @description
+     #' initialize object with data
+     #' @param dat A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to \code{key}s
      initializeData = function(dat)
      {
        assertthat::assert_that(is.data.frame(dat), msg = "Data is not contained in a data.frame in Component initializeData")
@@ -66,12 +42,17 @@ assertthat::assert_that(require(R6))
        }
        private$common_size_value <- rep(NA, nrow(dat))
      },
+     #' @description
+     #' add a sub-\code{component} to this component
+     #' @param comp a component
      add = function(comp)
      {
        assertthat::assert_that("component" %in% class(comp), msg = "Can only components to this class")
        private$components[[private$len + 1]] <- comp
        private$len <- private$len + 1
      },
+     #' @description
+     #' export this \code{component} in CSV format
      export_csv = function()
      {
        temp <- paste0(private$num, ", ", private$name, ", ", paste(private$value, collapse = ","))
@@ -81,6 +62,8 @@ assertthat::assert_that(require(R6))
        }
        return(temp)
      },
+     #' @description
+     #' print the \code{component} as a string
      print = function()
      {
        cat(paste0(private$num, "\t", private$name, "\t", private$value[1], " ...(", length(private$value), ")\n"))
@@ -89,6 +72,11 @@ assertthat::assert_that(require(R6))
          lapply(private$components, print)
        }
      },
+     #' @description
+     #' get a metric
+     #' @param key The lookup key associated with the line item number
+     #' @param num The line item number of a component of a schedule
+     #' @param metric the metric name
      getMetricFrom = function(key, num=NA, metric=.metric$value)
      {
        if (!missing(key))
@@ -126,30 +114,52 @@ assertthat::assert_that(require(R6))
          stop("Must supply key or num")
        }
      },
+     #' @description
+     #' get a \code{component} value from this object or a sub-\code{component} that matches the \code{key}
+     #' @param key The lookup key associated with the line item number
      getValueFromKey = function(key)
      {
        self$getMetricFrom(key, metric = .metric$value)
      },
+     #' @description
+     #' get a \code{component} value from the \code{component} number in this object or a sub-\code{component}
+     #' @param num The line item number of a component of a schedule
      getValueFromNum = function(num)
      {
        self$getMetricFrom(num = num, metric = .metric$value)
      },
+     #' @description
+     #' Get a num from a key
+     #' @param key The lookup key associated with the line item number
      getNumFromKey = function(key)
      {
        self$getMetricFrom(key, metric = .metric$num)
      },
+     #' @description
+     #' get a key from a num
+     #' @param num The line item number of a component of a schedule
      getKeyFromNum = function(num)
      {
        self$getMetricFrom(num = num, metric = .metric$key)
      },
+     #' @description
+     #' get a \code{component} common-sized value from the \code{component} number in this object or a sub-\code{component}
+     #' @param num The line item number of a component of a schedule
      getCommonSizeValueFromNum = function(num)
      {
        self$getMetricFrom(num = num, metric = .metric$common_size_value)
      },
+     #' @description
+     #' get a \code{component} common-sized value from the \code{component} \code{key} in this object or a sub-\code{component}
+     #' @param key The lookup key associated with the line item number
      getCommonSizeValueFromKey = function(key)
      {
        self$getMetricFrom(key, metric = .metric$common_size_value)
      },
+     #' @description
+     #' get a Component
+     #' @param num The line item number of a component of a schedule
+     #' @param key The lookup key associated with the line item number
      getComponentFrom = function(key, num=NA)
      {
        if (!missing(key))
@@ -203,29 +213,47 @@ assertthat::assert_that(require(R6))
          stop("Must supply key or num")
        }
      },
+     #' @description
+     #' Get a component from a key
+     #' @param key The lookup key associated with the line item number
      getComponentFromKey = function(key)
      {
        self$getComponentFrom(key)
      },
+     #' @description
+     #' Get a component from a key
+     #' @param num The line item number of a component of a schedule
      getComponentFromNum = function(num)
      {
        self$getComponentFrom(num = num)
      },
+     #' @description
+     #' get the value of this object
      getValue = function() {
        return(private$value)
      },
+     #' @description
+     #' get the common-sized value of this object
      getCommonSizeValue = function() {
        return(private$common_size_value)
      },
+     #' @description
+     #' get the \code{key} from this object
      getKey = function() {
        return(private$key)
      },
+     #' @description
+     #' get the \code{num} from this object
      getNum = function() {
        return(private$num)
      },
+     #' @description
+     #' get the \code{name} from this object
      getName = function() {
        return(private$name)
      },
+     #' @description
+     #' get the values from this object and all sub-\code{component}s
      getAllValues = function()
      {
        if (private$len == 0)
@@ -233,6 +261,8 @@ assertthat::assert_that(require(R6))
        else
          list(self$getValue(), lapply(private$components, function(z) z$getAllValues()))
      },
+     #' @description
+     #' get all the \code{num}s from this object and all sub-\code{component}s
      getAllNums = function()
      {
        if (private$len == 0)
@@ -240,6 +270,8 @@ assertthat::assert_that(require(R6))
        else
          list(self$getNum(), lapply(private$components, function(z) z$getAllNums()))
      },
+     #' @description
+     #' get all the \code{name}s from this object and all sub-\code{component}s
      getAllNames = function()
      {
        if (private$len == 0)
@@ -247,6 +279,9 @@ assertthat::assert_that(require(R6))
        else
          list(self$getName(), lapply(private$components, function(z) z$getAllNames()))
      },
+     #' @description
+     #' common-size this component using the \code{divisor}
+     #' @param divisor a numeric that a \code{component}'s values are divided by
      commonSize = function(divisor)
      {
        private$common_size_value <- private$value / divisor

@@ -4,8 +4,12 @@
 \alias{get_bank_ids}
 \title{Get bank IDs for target banks}
 \usage{
-get_bank_ids(bank_names, bank_meta_data, entity_type = "FHD",
-  most_recent = TRUE)
+get_bank_ids(
+  bank_names,
+  bank_meta_data,
+  entity_type = "FHD",
+  most_recent = TRUE
+)
 }
 \arguments{
 \item{bank_names}{The names of the banks to be selected from the \code{bank_meta_data}}
