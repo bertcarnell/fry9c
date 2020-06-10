@@ -1,16 +1,16 @@
 language: r
+os: linux
+dist: xenial
 
-matrix:
+jobs:
   include:
-    - dist: xenial
+    - dist: bionic
       r: release
       apt_packages: libpoppler-cpp-dev
-    - dist: trusty
+    - dist: xenial
       r: devel
       apt_packages: libpoppler-cpp-dev
     - os: osx
       r: release
 
 cache: packages
-
-sudo: false
