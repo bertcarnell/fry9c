@@ -8,21 +8,29 @@
 
 <title>Class providing an object to manipulate a component of a schedule in a FR Y-9c — component • fry9c</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,11 @@
 
 
 
-<meta property="og:title" content="Class providing an object to manipulate a component of a schedule in a FR Y-9c — component" />
 
-<meta property="og:description" content="Class providing an object to manipulate a component of a schedule in a FR Y-9c" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Class providing an object to manipulate a component of a schedule in a FR Y-9c — component" />
+<meta property="og:description" content="Class providing an object to manipulate a component of a schedule in a FR Y-9c
+Class providing an object to manipulate a component of a schedule in a FR Y-9c" />
+
 
 
 
@@ -47,9 +56,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -71,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -91,7 +101,6 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -101,6 +110,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -112,15 +122,12 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Class providing an object to manipulate a component of a schedule in a FR Y-9c</p>
-    
+<p>Class providing an object to manipulate a component of a schedule in a FR Y-9c</p>
     </div>
 
-    <pre class="usage"><span class='no'>.component</span>
+    <pre class="usage"><span class='fu'>Component</span>(<span class='no'>num</span>, <span class='no'>name</span>, <span class='no'>key</span>)</pre>
 
-<span class='fu'>Component</span>(<span class='no'>num</span>, <span class='no'>name</span>, <span class='no'>key</span>)</pre>
-    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -137,80 +144,271 @@
       <td><p>The lookup key associated with the line item number</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><code>R6Class</code> object.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of <code>R6Class</code></p>
-<p>an object of class <code>component</code></p>
-    
-    <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
-
-    
-    <dl class='dl-horizontal'>
-<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
-    <dt><code>name</code></dt><dd><p>The name of the line item number</p></dd>
-    <dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
-    <dt><code>dat</code></dt><dd><p>A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to <code>key</code>s</p></dd>
-    <dt><code>divisor</code></dt><dd><p>a numeric that a <code>component</code>'s values are divided by</p></dd>
-</dl>
-    
+    <p>an object of class <code>component</code></p>
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-    <dl class='dl-horizontal'>
-  <dt>Documentation</dt><dd><p></p></dd>
-  <dt><code>new(num, name, key)</code></dt><dd><p>generate a new member of the class</p></dd>
-  <dt><code>initializeData(dat)</code></dt><dd><p>initialize the values in each <code>component</code></p></dd>
-  <dt><code>add(comp)</code></dt><dd><p>add a sub-<code>component</code> to this component</p></dd>
-  <dt><code>export_csv()</code></dt><dd><p>export this <code>component</code> in CSV format</p></dd>
-  <dt><code><a href='https://www.rdocumentation.org/packages/base/topics/print'>print()</a></code></dt><dd><p>print the <code>component</code> as a string</p></dd>
-  <dt><code>getValueFromKey(key)</code></dt><dd><p>get a <code>component</code> value from this object or a sub-<code>component</code> that matches the <code>key</code></p></dd>
-  <dt><code>getValueFromNum(num)</code></dt><dd><p>get a <code>component</code> value from the <code>component</code> number in this object or a sub-<code>component</code></p></dd>
-  <dt><code>getCommonSizeValueFromNum(num)</code></dt><dd><p>get a <code>component</code> common-sized value from the <code>component</code> number in this object or a sub-<code>component</code></p></dd>
-  <dt><code>getCommonSizeValueFromKey(key)</code></dt><dd><p>get a <code>component</code> common-sized value from the <code>component</code> <code>key</code> in this object or a sub-<code>component</code></p></dd>
-  <dt><code>getValue()</code></dt><dd><p>get the value of this object</p></dd>
-  <dt><code>getCommonSizeValue</code></dt><dd><p>get the common-sized value of this object</p></dd>
-  <dt><code>getKey()</code></dt><dd><p>get the <code>key</code> from this object</p></dd>
-  <dt><code>getNum()</code></dt><dd><p>get the <code>num</code> from this object</p></dd>
-  <dt><code>getName()</code></dt><dd><p>get the <code>name</code> from this object</p></dd>
-  <dt><code>getAllValues()</code></dt><dd><p>get the values from this object and all sub-<code>component</code>s</p></dd>
-  <dt><code>getAllNums()</code></dt><dd><p>get all the <code>num</code>s from this object and all sub-<code>component</code>s</p></dd>
-  <dt><code>getAllNames()</code></dt><dd><p>get all the <code>name</code>s from this object and all sub-<code>component</code>s</p></dd>
-  <dt><code>commonSize(divisor)</code></dt><dd><p>common-size this component using the <code>divisor</code></p></dd>
-</dl>
-    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>.component$new()</code></a></p></li>
+<li><p><a href='#method-initializeData'><code>.component$initializeData()</code></a></p></li>
+<li><p><a href='#method-add'><code>.component$add()</code></a></p></li>
+<li><p><a href='#method-export_csv'><code>.component$export_csv()</code></a></p></li>
+<li><p><a href='#method-print'><code>.component$print()</code></a></p></li>
+<li><p><a href='#method-getMetricFrom'><code>.component$getMetricFrom()</code></a></p></li>
+<li><p><a href='#method-getValueFromKey'><code>.component$getValueFromKey()</code></a></p></li>
+<li><p><a href='#method-getValueFromNum'><code>.component$getValueFromNum()</code></a></p></li>
+<li><p><a href='#method-getNumFromKey'><code>.component$getNumFromKey()</code></a></p></li>
+<li><p><a href='#method-getKeyFromNum'><code>.component$getKeyFromNum()</code></a></p></li>
+<li><p><a href='#method-getCommonSizeValueFromNum'><code>.component$getCommonSizeValueFromNum()</code></a></p></li>
+<li><p><a href='#method-getCommonSizeValueFromKey'><code>.component$getCommonSizeValueFromKey()</code></a></p></li>
+<li><p><a href='#method-getComponentFrom'><code>.component$getComponentFrom()</code></a></p></li>
+<li><p><a href='#method-getComponentFromKey'><code>.component$getComponentFromKey()</code></a></p></li>
+<li><p><a href='#method-getComponentFromNum'><code>.component$getComponentFromNum()</code></a></p></li>
+<li><p><a href='#method-getValue'><code>.component$getValue()</code></a></p></li>
+<li><p><a href='#method-getCommonSizeValue'><code>.component$getCommonSizeValue()</code></a></p></li>
+<li><p><a href='#method-getKey'><code>.component$getKey()</code></a></p></li>
+<li><p><a href='#method-getNum'><code>.component$getNum()</code></a></p></li>
+<li><p><a href='#method-getName'><code>.component$getName()</code></a></p></li>
+<li><p><a href='#method-getAllValues'><code>.component$getAllValues()</code></a></p></li>
+<li><p><a href='#method-getAllNums'><code>.component$getAllNums()</code></a></p></li>
+<li><p><a href='#method-getAllNames'><code>.component$getAllNames()</code></a></p></li>
+<li><p><a href='#method-commonSize'><code>.component$commonSize()</code></a></p></li>
+<li><p><a href='#method-clone'><code>.component$clone()</code></a></p></li>
+</ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
+<p>initialize the values in each <code>component</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>new</span>(<span class='no'>num</span>, <span class='no'>name</span>, <span class='no'>key</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+<dt><code>name</code></dt><dd><p>The name of the line item number</p></dd>
+
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-initializeData"></a></p><h3>Method <code>initializeData()</code></h3>
+<p>initialize object with data</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>initializeData</span>(<span class='no'>dat</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>dat</code></dt><dd><p>A dataset from the Fed with all FR Y-9c data for a quarter.  The dataset contains columns with names that correspond to <code>key</code>s</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-add"></a></p><h3>Method <code>add()</code></h3>
+<p>add a sub-<code>component</code> to this component</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>add</span>(<span class='no'>comp</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>comp</code></dt><dd><p>a component</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-export_csv"></a></p><h3>Method <code>export_csv()</code></h3>
+<p>export this <code>component</code> in CSV format</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>export_csv</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-print"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>print the <code>component</code> as a string</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getMetricFrom"></a></p><h3>Method <code>getMetricFrom()</code></h3>
+<p>get a metric</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getMetricFrom</span>(<span class='no'>key</span>, <span class='kw'>num</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>metric</span> <span class='kw'>=</span> <span class='no'>.metric</span>$<span class='no'>value</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+<dt><code>metric</code></dt><dd><p>the metric name</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getValueFromKey"></a></p><h3>Method <code>getValueFromKey()</code></h3>
+<p>get a <code>component</code> value from this object or a sub-<code>component</code> that matches the <code>key</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getValueFromKey</span>(<span class='no'>key</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getValueFromNum"></a></p><h3>Method <code>getValueFromNum()</code></h3>
+<p>get a <code>component</code> value from the <code>component</code> number in this object or a sub-<code>component</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getValueFromNum</span>(<span class='no'>num</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getNumFromKey"></a></p><h3>Method <code>getNumFromKey()</code></h3>
+<p>Get a num from a key</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getNumFromKey</span>(<span class='no'>key</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getKeyFromNum"></a></p><h3>Method <code>getKeyFromNum()</code></h3>
+<p>get a key from a num</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getKeyFromNum</span>(<span class='no'>num</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getCommonSizeValueFromNum"></a></p><h3>Method <code>getCommonSizeValueFromNum()</code></h3>
+<p>get a <code>component</code> common-sized value from the <code>component</code> number in this object or a sub-<code>component</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getCommonSizeValueFromNum</span>(<span class='no'>num</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getCommonSizeValueFromKey"></a></p><h3>Method <code>getCommonSizeValueFromKey()</code></h3>
+<p>get a <code>component</code> common-sized value from the <code>component</code> <code>key</code> in this object or a sub-<code>component</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getCommonSizeValueFromKey</span>(<span class='no'>key</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getComponentFrom"></a></p><h3>Method <code>getComponentFrom()</code></h3>
+<p>get a Component</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getComponentFrom</span>(<span class='no'>key</span>, <span class='kw'>num</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getComponentFromKey"></a></p><h3>Method <code>getComponentFromKey()</code></h3>
+<p>Get a component from a key</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getComponentFromKey</span>(<span class='no'>key</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>key</code></dt><dd><p>The lookup key associated with the line item number</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getComponentFromNum"></a></p><h3>Method <code>getComponentFromNum()</code></h3>
+<p>Get a component from a key</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getComponentFromNum</span>(<span class='no'>num</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>num</code></dt><dd><p>The line item number of a component of a schedule</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-getValue"></a></p><h3>Method <code>getValue()</code></h3>
+<p>get the value of this object</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getValue</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getCommonSizeValue"></a></p><h3>Method <code>getCommonSizeValue()</code></h3>
+<p>get the common-sized value of this object</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getCommonSizeValue</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getKey"></a></p><h3>Method <code>getKey()</code></h3>
+<p>get the <code>key</code> from this object</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getKey</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getNum"></a></p><h3>Method <code>getNum()</code></h3>
+<p>get the <code>num</code> from this object</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getNum</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getName"></a></p><h3>Method <code>getName()</code></h3>
+<p>get the <code>name</code> from this object</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getName</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getAllValues"></a></p><h3>Method <code>getAllValues()</code></h3>
+<p>get the values from this object and all sub-<code>component</code>s</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getAllValues</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getAllNums"></a></p><h3>Method <code>getAllNums()</code></h3>
+<p>get all the <code>num</code>s from this object and all sub-<code>component</code>s</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getAllNums</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-getAllNames"></a></p><h3>Method <code>getAllNames()</code></h3>
+<p>get all the <code>name</code>s from this object and all sub-<code>component</code>s</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>getAllNames</span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-commonSize"></a></p><h3>Method <code>commonSize()</code></h3>
+<p>common-size this component using the <code>divisor</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>commonSize</span>(<span class='no'>divisor</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>divisor</code></dt><dd><p>a numeric that a <code>component</code>'s values are divided by</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.component</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>Component</span>(<span class='st'>"1.a."</span>, <span class='st'>"Income"</span>, <span class='st'>"ZZZZ1234"</span>)
 <span class='no'>x</span>$<span class='fu'>add</span>(<span class='fu'>Component</span>(<span class='st'>"1.a.(1)"</span>, <span class='st'>"Sub-Income"</span>, <span class='st'>"ABCD5555"</span>))
-<span class='no'>x</span>$<span class='fu'>initializeData</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>ZZZZ1234</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>4</span>,
+<span class='no'>x</span>$<span class='fu'>initializeData</span>(<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>ZZZZ1234</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>4</span>,
                             <span class='kw'>ABCD5555</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>8</span>))
-<span class='no'>x</span>$<span class='fu'>export_csv</span>()[<span class='fl'>1</span>] <span class='kw'>==</span> <span class='st'>"1.a., Income, 1,2,3,4"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 1.a.	Income	1 ...(4)
-#&gt; 1.a.(1)	Sub-Income	5 ...(4)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>x</span>$<span class='fu'>getValueFromKey</span>(<span class='st'>"ABCD5555"</span>) <span class='kw'>==</span> <span class='fl'>5</span>:<span class='fl'>8</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>x</span>$<span class='fu'>getValueFromNum</span>(<span class='st'>"1.a."</span>) <span class='kw'>==</span> <span class='fl'>1</span>:<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>x</span>$<span class='fu'>getValue</span>() <span class='kw'>==</span> <span class='fl'>1</span>:<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>x</span>$<span class='fu'>getKey</span>() <span class='kw'>==</span> <span class='st'>"ZZZZ1234"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>x</span>$<span class='fu'>getNum</span>() <span class='kw'>==</span> <span class='st'>"1.a."</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>x</span>$<span class='fu'>getName</span>() <span class='kw'>==</span> <span class='st'>"Income"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlist'>unlist</a></span>(<span class='no'>x</span>$<span class='fu'>getAllValues</span>()) <span class='kw'>==</span> <span class='fl'>1</span>:<span class='fl'>8</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlist'>unlist</a></span>(<span class='no'>x</span>$<span class='fu'>getAllNums</span>()) <span class='kw'>==</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"1.a."</span>, <span class='st'>"1.a.(1)"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlist'>unlist</a></span>(<span class='no'>x</span>$<span class='fu'>getAllNames</span>() <span class='kw'>==</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Income"</span>, <span class='st'>"Sub-Income"</span>)))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='no'>x</span>$<span class='fu'>commonSize</span>(<span class='fl'>100</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>x</span>$<span class='fu'>getCommonSizeValueFromNum</span>(<span class='st'>"1.a."</span>), (<span class='fl'>1</span>:<span class='fl'>4</span>)/<span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>x</span>$<span class='fu'>getCommonSizeValueFromKey</span>(<span class='st'>"ZZZZ1234"</span>), (<span class='fl'>1</span>:<span class='fl'>4</span>)/<span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all.equal'>all.equal</a></span>(<span class='no'>x</span>$<span class='fu'>getCommonSizeValue</span>(), (<span class='fl'>1</span>:<span class='fl'>4</span>)/<span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+<span class='no'>x</span>$<span class='fu'>export_csv</span>()[<span class='fl'>1</span>] <span class='kw'>==</span> <span class='st'>"1.a., Income, 1,2,3,4"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 1.a.	Income	1 ...(4)
+#&gt; 1.a.(1)	Sub-Income	5 ...(4)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>x</span>$<span class='fu'>getValueFromKey</span>(<span class='st'>"ABCD5555"</span>) <span class='kw'>==</span> <span class='fl'>5</span>:<span class='fl'>8</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>x</span>$<span class='fu'>getValueFromNum</span>(<span class='st'>"1.a."</span>) <span class='kw'>==</span> <span class='fl'>1</span>:<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>x</span>$<span class='fu'>getValue</span>() <span class='kw'>==</span> <span class='fl'>1</span>:<span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>x</span>$<span class='fu'>getKey</span>() <span class='kw'>==</span> <span class='st'>"ZZZZ1234"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>x</span>$<span class='fu'>getNum</span>() <span class='kw'>==</span> <span class='st'>"1.a."</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='no'>x</span>$<span class='fu'>getName</span>() <span class='kw'>==</span> <span class='st'>"Income"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='no'>x</span>$<span class='fu'>getAllValues</span>()) <span class='kw'>==</span> <span class='fl'>1</span>:<span class='fl'>8</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='no'>x</span>$<span class='fu'>getAllNums</span>()) <span class='kw'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1.a."</span>, <span class='st'>"1.a.(1)"</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span>(<span class='no'>x</span>$<span class='fu'>getAllNames</span>() <span class='kw'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Income"</span>, <span class='st'>"Sub-Income"</span>)))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='no'>x</span>$<span class='fu'>commonSize</span>(<span class='fl'>100</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>x</span>$<span class='fu'>getCommonSizeValueFromNum</span>(<span class='st'>"1.a."</span>), (<span class='fl'>1</span>:<span class='fl'>4</span>)/<span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>x</span>$<span class='fu'>getCommonSizeValueFromKey</span>(<span class='st'>"ZZZZ1234"</span>), (<span class='fl'>1</span>:<span class='fl'>4</span>)/<span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>x</span>$<span class='fu'>getCommonSizeValue</span>(), (<span class='fl'>1</span>:<span class='fl'>4</span>)/<span class='fl'>100</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#fields">Fields</a></li>
-
-      <li><a href="#methods">Methods</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -218,13 +416,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

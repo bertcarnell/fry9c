@@ -9,21 +9,29 @@
 <title>Class providing an object to manipulate a group of FR Y-9c templates, typically
 used to manage FY Y-9c across years — fry9c_group • fry9c</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,12 +39,14 @@ used to manage FY Y-9c across years — fry9c_group • fry9c</title>
 
 
 
+
 <meta property="og:title" content="Class providing an object to manipulate a group of FR Y-9c templates, typically
 used to manage FY Y-9c across years — fry9c_group" />
-
 <meta property="og:description" content="Class providing an object to manipulate a group of FR Y-9c templates, typically
+used to manage FY Y-9c across years
+Class providing an object to manipulate a group of FR Y-9c templates, typically
 used to manage FY Y-9c across years" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -50,9 +60,10 @@ used to manage FY Y-9c across years" />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -74,7 +85,7 @@ used to manage FY Y-9c across years" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +105,6 @@ used to manage FY Y-9c across years" />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -104,6 +114,7 @@ used to manage FY Y-9c across years" />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -116,19 +127,17 @@ used to manage FY Y-9c across years</h1>
     </div>
 
     <div class="ref-description">
-    
     <p>Class providing an object to manipulate a group of FR Y-9c templates, typically
 used to manage FY Y-9c across years</p>
-    
+<p>Class providing an object to manipulate a group of FR Y-9c templates, typically
+used to manage FY Y-9c across years</p>
     </div>
 
-    <pre class="usage"><span class='no'>.fry9c_group</span>
-
-<span class='fu'>Fry9c_group</span>(<span class='no'>years</span>, <span class='no'>quarters</span>)
+    <pre class="usage"><span class='fu'>Fry9c_group</span>(<span class='no'>years</span>, <span class='no'>quarters</span>)
 
 <span class='co'># S3 method for fry9c_group</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
-    
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -149,80 +158,164 @@ used to manage FY Y-9c across years</p>
       <td><p>not used</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><code>R6Class</code> object.</p>
-    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of <code>R6Class</code></p>
-<p>an object of class <code>fry9c_group</code></p>
+    <p>an object of class <code>fry9c_group</code></p>
 <p>the number of <code>fry9c</code> objects in the group</p>
-    
-    <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
-
-    
-    <dl class='dl-horizontal'>
-<dt><code>fry9c_list</code></dt><dd><p>a list of FR Y-9c objects</p></dd>
-    <dt><code>years</code></dt><dd><p>The year associated with FR Y-9c in the list</p></dd>
-    <dt><code>quarters</code></dt><dd><p>The quarter associated with each FR Y-9c in the list</p></dd>
-</dl>
-    
     <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
 
     
-    <dl class='dl-horizontal'>
-  <dt>Documentation</dt><dd><p></p></dd>
-  <dt><code>new(years, quarters)</code></dt><dd><p>Creates object of this class with room for FR Y-9cs associated with each <code>year</code> adn <code>quarter</code></p></dd>
-  <dt><code><a href='parse_fry9c.html'>parse_fry9c(files)</a></code></dt><dd><p>Parse a collection of <code>files</code> which each represent a FR Y-9c schema.</p></dd>
-  <dt><code>initializeData(data_list, banks)</code></dt><dd><p>Parse a collection of FR Y-9c data files in <code>data_list</code>.  Also include a vector of <code>banks</code> that includes the names of the banks associated with the rows as they should appear in output.</p></dd>
-  <dt><code>get_fry9c(year, quarter)</code></dt><dd><p>Extract a <code>fry9c</code> object from the collection associated with a <code>year</code> and <code>quarter</code></p></dd>
-  <dt><code>commonSize(divisor_sched, divisor_key, sched)</code></dt><dd><p>Common side the <code>sched</code> using the element from the <code>divisor_sched</code> and <code>divisor_key</code>.  This is usually done by common sizing an income statement with the average assets.</p></dd>
-  <dt><code>get_plot_data(sched, key)</code></dt><dd><p>Create a <code>data.frame</code> that can be used for plotting using <code>ggplot2</code> by selecting a schedule <code>sched</code> and element number <code>key</code></p></dd>
-  <dt><code><a href='https://www.rdocumentation.org/packages/base/topics/length'>length()</a></code></dt><dd><p>Return the number of fry9c objects in the collection</p></dd>
-  <dt><code><a href='https://www.rdocumentation.org/packages/base/topics/print'>print()</a></code></dt><dd><p>Print a summary of the collection contents</p></dd>
-</dl>
-    
+<h3>Public methods</h3>
+
+<ul>
+<li><p><a href='#method-new'><code>.fry9c_group$new()</code></a></p></li>
+<li><p><a href='#method-parse_fry9c'><code>.fry9c_group$parse_fry9c()</code></a></p></li>
+<li><p><a href='#method-initializeData'><code>.fry9c_group$initializeData()</code></a></p></li>
+<li><p><a href='#method-get_fry9c'><code>.fry9c_group$get_fry9c()</code></a></p></li>
+<li><p><a href='#method-get_fry9c_list'><code>.fry9c_group$get_fry9c_list()</code></a></p></li>
+<li><p><a href='#method-commonSize'><code>.fry9c_group$commonSize()</code></a></p></li>
+<li><p><a href='#method-get_plot_data'><code>.fry9c_group$get_plot_data()</code></a></p></li>
+<li><p><a href='#method-length'><code>.fry9c_group$length()</code></a></p></li>
+<li><p><a href='#method-print'><code>.fry9c_group$print()</code></a></p></li>
+<li><p><a href='#method-clone'><code>.fry9c_group$clone()</code></a></p></li>
+</ul>
+<p><hr>
+<a id="method-new"></a></p><h3>Method <code>new()</code></h3>
+<p>Initialize</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>new</span>(<span class='no'>years</span>, <span class='no'>quarters</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>years</code></dt><dd><p>The year associated with FR Y-9c in the list</p></dd>
+
+<dt><code>quarters</code></dt><dd><p>The quarter associated with each FR Y-9c in the list</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-parse_fry9c"></a></p><h3>Method <code><a href='parse_fry9c.html'>parse_fry9c()</a></code></h3>
+<p>Parse a collection of <code>files</code> which each represent a FR Y-9c schema.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'><a href='parse_fry9c.html'>parse_fry9c</a></span>(<span class='no'>files</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>files</code></dt><dd><p>file names</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-initializeData"></a></p><h3>Method <code>initializeData()</code></h3>
+<p>Parse a collection of FR Y-9c data files in <code>data_list</code>.  Also include a vector of <code>banks</code> that includes the names of the banks associated with the rows as they should appear in output.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>initializeData</span>(<span class='no'>data_list</span>, <span class='no'>banks</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>data_list</code></dt><dd><p>list of data objects</p></dd>
+
+<dt><code>banks</code></dt><dd><p>bank names</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-get_fry9c"></a></p><h3>Method <code>get_fry9c()</code></h3>
+<p>Extract a <code>fry9c</code> object from the collection associated with a <code>year</code> and <code>quarter</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>get_fry9c</span>(<span class='no'>year</span>, <span class='no'>quarter</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>year</code></dt><dd><p>The year associated with FR Y-9c in the list</p></dd>
+
+<dt><code>quarter</code></dt><dd><p>The quarter associated with each FR Y-9c in the list</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-get_fry9c_list"></a></p><h3>Method <code>get_fry9c_list()</code></h3>
+<p>Get a FRY-9C list</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>get_fry9c_list</span>(<span class='no'>years</span>, <span class='no'>quarters</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>years</code></dt><dd><p>The year associated with FR Y-9c in the list</p></dd>
+
+<dt><code>quarters</code></dt><dd><p>The quarter associated with each FR Y-9c in the list</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-commonSize"></a></p><h3>Method <code>commonSize()</code></h3>
+<p>Common side the <code>sched</code> using the element from the <code>divisor_sched</code> and <code>divisor_key</code>.  This is usually done by common sizing an income statement with the average assets.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>commonSize</span>(<span class='no'>divisor_sched</span>, <span class='no'>divisor_key</span>, <span class='no'>sched</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>divisor_sched</code></dt><dd><p>the schedule of the divisor</p></dd>
+
+<dt><code>divisor_key</code></dt><dd><p>the key of the divisor</p></dd>
+
+<dt><code>sched</code></dt><dd><p>the schedule</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-get_plot_data"></a></p><h3>Method <code>get_plot_data()</code></h3>
+<p>Create a <code>data.frame</code> that can be used for plotting using <code>ggplot2</code> by selecting a schedule <code>sched</code> and element number <code>key</code></p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>get_plot_data</span>(<span class='no'>sched</span>, <span class='no'>key</span>, <span class='kw'>num</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>sched</code></dt><dd><p>the schedule</p></dd>
+
+<dt><code>key</code></dt><dd><p>the key in the schedule</p></dd>
+
+<dt><code>num</code></dt><dd><p>the schedule element</p></dd>
+
+</dl><p></div></p>
+<p><hr>
+<a id="method-length"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/length.html'>length()</a></code></h3>
+<p>Return the number of fry9c objects in the collection</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-print"></a></p><h3>Method <code><a href='https://rdrr.io/r/base/print.html'>print()</a></code></h3>
+<p>Print a summary of the collection contents</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>()</pre><p></div></p>
+
+<p><hr>
+<a id="method-clone"></a></p><h3>Method <code>clone()</code></h3>
+<p>The objects of this class are cloneable with this method.</p><h3>Usage</h3>
+<p><div class="r"></p><pre><span class='no'>.fry9c_group</span>$<span class='fu'>clone</span>(<span class='kw'>deep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre><p></div></p>
+
+<h3>Arguments</h3>
+<p><div class="arguments"></p><dl'>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p></dd>
+
+</dl><p></div></p>
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load example data</span>
-<span class='no'>fry9c_data_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"ex_BHCF1712.csv"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fry9c"</span>)),
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>read.csv</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"ex_BHCF1812.csv"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fry9c"</span>)))
+<span class='no'>fry9c_data_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"ex_BHCF1712.csv"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fry9c"</span>)),
+  <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"ex_BHCF1812.csv"</span>), <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fry9c"</span>)))
 
-<span class='no'>my_fry9c_group</span> <span class='kw'>&lt;-</span> <span class='fu'>Fry9c_group</span>(<span class='kw'>years</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2017</span>, <span class='fl'>2016</span>),
-                              <span class='kw'>quarters</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>4</span>))
+<span class='no'>my_fry9c_group</span> <span class='kw'>&lt;-</span> <span class='fu'>Fry9c_group</span>(<span class='kw'>years</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2017</span>, <span class='fl'>2016</span>),
+                              <span class='kw'>quarters</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>4</span>))
 <span class='no'>my_fry9c_group</span>$<span class='fu'><a href='parse_fry9c.html'>parse_fry9c</a></span>(
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"FR_Y-9C20171231.xml"</span>, <span class='st'>"FR_Y-9C20161231.xml"</span>)),
+  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"extdata"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"FR_Y-9C20171231.xml"</span>, <span class='st'>"FR_Y-9C20161231.xml"</span>)),
               <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"fry9c"</span>))
 
-<span class='no'>my_fry9c_group</span>$<span class='fu'>initializeData</span>(<span class='no'>fry9c_data_list</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"bank"</span>, <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>], <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>my_fry9c_group</span>)</div><div class='output co'>#&gt; 	years =  2017, 2016 
-#&gt; 	quarters =  4, 4 </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>my_fry9c_group</span>) <span class='kw'>==</span> <span class='fl'>2</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>my_fry9c_group</span>$<span class='fu'>get_fry9c</span>(<span class='fl'>2016</span>, <span class='fl'>4</span>))[<span class='fl'>1</span>] <span class='kw'>==</span> <span class='st'>"fry9c"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>my_fry9c_group</span>$<span class='fu'>initializeData</span>(<span class='no'>fry9c_data_list</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"bank"</span>, <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>10</span>], <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>my_fry9c_group</span>)</div><div class='output co'>#&gt; 	years =  2017, 2016 
+#&gt; 	quarters =  4, 4 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>my_fry9c_group</span>) <span class='kw'>==</span> <span class='fl'>2</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>my_fry9c_group</span>$<span class='fu'>get_fry9c</span>(<span class='fl'>2016</span>, <span class='fl'>4</span>))[<span class='fl'>1</span>] <span class='kw'>==</span> <span class='st'>"fry9c"</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='no'>my_fry9c_group</span>$<span class='fu'>commonSize</span>(<span class='st'>"HC-K"</span>, <span class='st'>"BHCK3368"</span>, <span class='st'>"HI"</span>) <span class='co'># 5.</span>
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>my_fry9c_group</span>$<span class='fu'>get_plot_data</span>(<span class='st'>"HC-K"</span>, <span class='st'>"BHCK3368"</span>)) <span class='kw'>==</span> <span class='fl'>20</span> <span class='co'># 5.</span></div><div class='output co'>#&gt; [1] TRUE</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>my_fry9c_group</span>$<span class='fu'>get_plot_data</span>(<span class='st'>"HC-K"</span>, <span class='st'>"BHCK3368"</span>)) <span class='kw'>==</span> <span class='fl'>20</span> <span class='co'># 5.</span></div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#fields">Fields</a></li>
-
-      <li><a href="#methods">Methods</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -230,13 +323,16 @@ used to manage FY Y-9c across years</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
