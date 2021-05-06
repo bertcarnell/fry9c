@@ -4,3 +4,4 @@
 ^doc$
 ^docs$
 ^\.travis\.yml$
+^\.github$
