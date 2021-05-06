@@ -86,6 +86,9 @@ testthat::test_that("test extraction", {
 
   y <- x$getComponentFrom("ABCD5555")
   expect_equal(y$getNum(), "1.a.(1)")
+
+  expect_null(x$getComponentFrom("123"))
+  expect_null(x$getComponentFrom(num = "3.b."))
 })
 
 testthat::test_that("test summing", {

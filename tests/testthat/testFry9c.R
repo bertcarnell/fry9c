@@ -24,6 +24,8 @@ testthat::test_that("test adding schedules to fry9cs", {
   expect_equal(f$getSchedule("HI")$getComponent(1)$getNum(), "1.a.")
 
   expect_error(f$add(5))
+
+  expect_error(f$getSchedule("ZZZ"))
 })
 
 testthat::test_that("test initializing data", {

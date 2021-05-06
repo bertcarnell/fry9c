@@ -33,7 +33,7 @@ testthat::test_that("test initializing data", {
   my_fry9c_group$parse_fry9c(
     system.file(file.path("extdata", c("FR_Y-9C20171231.xml", "FR_Y-9C20161231.xml")),
                 package = "fry9c"))
-  my_fry9c_group$initializeData(fry9c_data_list, paste("bank", LETTERS[1:10], sep=""))
+  my_fry9c_group$initializeData(fry9c_data_list, paste("bank", LETTERS[1:10], sep = ""))
 
   my_fry9c_group$commonSize("HC-K", "BHCK3368", "HI")
 

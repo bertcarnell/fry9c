@@ -38,6 +38,8 @@
          if (private$schedules[[i]]$getDesig() == desig)
            return(private$schedules[[i]])
        }
+       # if no matching schedule is found, error
+       stop(paste("Schedule ", desig, "Not Found"))
      },
      #' @description
      #' initialize the values in each \code{schedule} and \code{component}

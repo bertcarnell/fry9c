@@ -4,7 +4,7 @@ require(pdftools)
 require(RColorBrewer)
 require(fry9c)
 
-repositoryPath <- file.path("C:","Users","Rob","Documents","Repositories")
+repositoryPath <- file.path("C:","developer")
 
 fry_path <- file.path(repositoryPath, "fry9c", "doc")
 
