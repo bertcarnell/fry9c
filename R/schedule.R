@@ -2,6 +2,7 @@
 #' @name schedule
 #'
 #' @importFrom R6 R6Class
+#' @importFrom assertthat assert_that
 
 .schedule <- R6::R6Class("schedule",
   public = list(

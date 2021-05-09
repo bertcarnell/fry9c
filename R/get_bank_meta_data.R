@@ -3,6 +3,10 @@
 #' @return a \code{data.frame} containing the metadata
 #' @export
 #'
+#' @importFrom pdftools pdf_text
+#' @importFrom httr handle GET write_disk
+#' @importFrom utils read.fwf
+#'
 #' @examples
 #' \dontrun{
 #' get_bank_meta_data()

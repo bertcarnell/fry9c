@@ -2,6 +2,8 @@
 #' @name fry9c
 #'
 #' @importFrom R6 R6Class
+#' @importFrom assertthat assert_that
+#' @importFrom openxlsx createWorkbook addWorksheet writeData saveWorkbook
 
 .fry9c <- R6::R6Class("fry9c",
    public = list(

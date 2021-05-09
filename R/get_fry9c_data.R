@@ -10,6 +10,10 @@
 #' @return a \code{data.frame} containing the results
 #' @export
 #'
+#' @importFrom assertthat assert_that
+#' @importFrom httr parse_url build_url handle GET write_disk
+#' @importFrom utils unzip read.table
+#'
 #' @examples
 #' \dontrun{X1Q2018 <- get_fry9c_data(2018, 1)}
 get_fry9c_data <- function(year, quarter, max_rows = 5000, verbose = TRUE)

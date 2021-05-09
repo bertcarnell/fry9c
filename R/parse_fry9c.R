@@ -10,6 +10,9 @@
 #'
 #' @details Need to add ... to pass arguments to read_xml
 #'
+#' @importFrom xml2 read_xml xml_attrs xml_children xml_validate
+#' @importFrom assertthat assert_that
+#'
 #' @examples
 #' xml <- '
 #' <FRY9C date="20160101" omb_number="1" title="Test FR Y-9C">
@@ -74,6 +77,9 @@ parse_schedule <- function(nodeset)
 #' Parse the component portion of the FR Y-9c schema
 #'
 #' @param nodeset an xml2 nodeset like that returned by xml_children
+#'
+#' @importFrom assertthat assert_that
+#' @importFrom xml2 xml_attrs xml_length xml_children
 #'
 #' @return an xml2 nodeset
 parse_component <- function(nodeset)

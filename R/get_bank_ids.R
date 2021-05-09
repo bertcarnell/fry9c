@@ -8,6 +8,8 @@
 #' @return If most_recent is \code{TRUE} then a vector of one ID for each bank_name.  Otherwise, multiple IDs may be returned in a list
 #' @export
 #'
+#' @importFrom assertthat assert_that
+#'
 #' @examples
 #' bank_meta_data <- data.frame(ID_RSSID = c(10, 20, 30),
 #'   Entity_Type = rep("FHD", 3),

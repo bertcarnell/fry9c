@@ -2,6 +2,7 @@
 #' @name component
 #'
 #' @importFrom R6 R6Class
+#' @importFrom assertthat assert_that
 
 .component <- R6::R6Class("component",
   public = list(

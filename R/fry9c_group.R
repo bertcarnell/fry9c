@@ -3,6 +3,7 @@
 #' @name fry9c_group
 #'
 #' @importFrom R6 R6Class
+#' @importFrom assertthat assert_that
 
 .fry9c_group <- R6::R6Class("fry9c_group",
    public = list(
