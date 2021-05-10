@@ -1,7 +1,7 @@
 # fry9c
 R package for interacting with the Federal Reserve Consolidated Financial Statements for Holding Companies (FR Y-9c)
 
-[![Build Status](https://travis-ci.org/bertcarnell/fry9c.svg?branch=master)](https://travis-ci.org/bertcarnell/fry9c)
+[![R-CMD-CHECK](https://github.com/bertcarnell/fry9c/actions/workflows/r-cmd-check.yml/badge.svg)](https://github.com/bertcarnell/fry9c/actions/workflows/r-cmd-check.yml)
 
 ## Data
 
