@@ -4,14 +4,12 @@
 \alias{get_fry9c_data}
 \title{Get FR Y-9c data}
 \usage{
-get_fry9c_data(year, quarter, max_rows = 5000, verbose = TRUE)
+get_fry9c_data(year, quarter, verbose = TRUE)
 }
 \arguments{
-\item{year}{the year requested starting in 1986}
+\item{year}{the year requested starting in 2017 (for prior years, use \code{\link{get_fry9c_historical_data}})}
 
 \item{quarter}{the quarter requested [1,2,3,4]}
-
-\item{max_rows}{the maximum number of rows to read from the file.  As of 2018, the files are generally less than 5,000 rows.  (Default: 5000)}
 
 \item{verbose}{should messages be printed? (Default: TRUE)}
 }
@@ -19,8 +17,15 @@ get_fry9c_data(year, quarter, max_rows = 5000, verbose = TRUE)
 a \code{data.frame} containing the results
 }
 \description{
-Query the Chicago Fed to obtain the requested year and quarter FR Y-9c
+Query the FFIEC (Federal Financial Institutions Examination Council)
+NIC (National Information Center) to obtain the requested year and quarter FR Y-9c
+}
+\details{
+\url{https://www.ffiec.gov/npw/FinancialReport/FinancialDataDownload}
 }
 \examples{
-\dontrun{X1Q2018 <- get_fry9c_data(2018, 1)}
+\dontrun{X <- get_fry9c_data(2021, 1)}
+}
+\seealso{
+\code{\link{get_fry9c_historical_data}}
 }

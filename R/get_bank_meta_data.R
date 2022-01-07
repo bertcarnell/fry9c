@@ -15,7 +15,7 @@ get_bank_meta_data <- function()
 {
   tmpdir <- tempdir()
   file_name <- file.path(tmpdir, "hc-name-list-pdf.pdf")
-  my_url <- "https://www.chicagofed.org/~/media/others/banking/financial-institution-reports/hc-name-list-pdf.pdf?la=en"
+  my_url <- "https://www.chicagofed.org/~/media/others/banking/financial-institution-reports/hc-name-list-pdf.pdf"
   h <- httr::handle(my_url)
   httr::GET(url = my_url, httr::write_disk(file_name, overwrite = TRUE), handle = h)
   bank_text <- pdftools::pdf_text(file_name)
@@ -23,7 +23,7 @@ get_bank_meta_data <- function()
   res <- vector("list", length = length(bank_text))
   for (i in 1:length(bank_text)) # loop over pages
   {
-    temp <- strsplit(bank_text[i], "\r\n")[[1]]
+    temp <- strsplit(bank_text[i], "\n")[[1]]
     res[[i]] <- temp[grepl("^[0-9]+", trimws(temp))]
     # padd each line with whitespace
     res[[i]] <- paste0(res[[i]], "                  ")
@@ -31,7 +31,7 @@ get_bank_meta_data <- function()
   res <- unlist(res)
   tf <- tempfile("banklisting.txt")
   writeLines(text = res, con = tf)
-  bank_meta_data <- utils::read.fwf(file = tf, widths = c(9,11,200),
+  bank_meta_data <- utils::read.fwf(file = tf, widths = c(10,9,200),
                                     strip.white = TRUE, stringsAsFactors = FALSE,
                                     comment.char = "")
   unlink(tf)
