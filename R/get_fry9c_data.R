@@ -22,8 +22,8 @@
 #' \dontrun{X <- get_fry9c_data(2021, 1)}
 get_fry9c_data <- function(year, quarter, verbose = TRUE)
 {
-  # year <- 2020
-  # quarter <- 2
+  # year <- 2018
+  # quarter <- 1
   # verbose <- TRUE
   assertthat::assert_that(length(year) == 1 && length(quarter) == 1, msg = "year and quarter must be length 1")
   assertthat::assert_that(year >= 2017, msg = "the year must be >= 2017")
@@ -58,10 +58,49 @@ get_fry9c_data <- function(year, quarter, verbose = TRUE)
     cat("Reading results...\n")
     cat(paste0("\t", extract_files[1], "\n"))
   }
-  BHCFYYMM <- utils::read.table(extract_files[1], sep = "^", #nrows = max_rows,
-                         comment.char = "", header = TRUE, quote = "",
-                         na.strings = "--------", as.is = TRUE,
-                         stringsAsFactors = FALSE)
+  # try to read the table.  Some of the files have EOF characters in the fields
+  #   Using a connection so that we can re-start the read
+  b_second_read <- TRUE
+  tryCatch({
+    BHCFYYMM <- utils::read.table(extract_files[1], sep = "^", #nrows = max_rows,
+                                  comment.char = "", header = TRUE, quote = "",
+                                  na.strings = "--------", as.is = TRUE,
+                                  stringsAsFactors = FALSE)
+    b_second_read <- FALSE
+  }, warning = function(w) {
+    if (verbose)
+    {
+      cat("\nRe-Reading file due to a warning")
+    }
+  })
+  if (b_second_read)
+  {
+    ff <- file(extract_files[1], "r")
+    suppressWarnings({
+      BHCFYYMM <- utils::read.table(ff, sep = "^", #nrows = max_rows,
+                                    comment.char = "", header = TRUE, quote = "",
+                                    na.strings = "--------", as.is = TRUE, flush = TRUE,
+                                    stringsAsFactors = FALSE)
+    })
+    if (verbose)
+    {
+      cat(paste0("First chunk had ", nrow(BHCFYYMM), " rows\n"))
+    }
+    dummy <- seek(ff)
+    # scan to the end of the offending line
+    dummy <- scan(ff, what = character(), nlines = 1, quiet = TRUE)
+    BHCFYYMM2 <- utils::read.table(ff, sep = "^", #nrows = max_rows,
+                                  comment.char = "", header = FALSE, quote = "",
+                                  na.strings = "--------", as.is = TRUE,
+                                  stringsAsFactors = FALSE)
+    if (verbose)
+    {
+      cat(paste0("Second chunk had ", nrow(BHCFYYMM2), " rows\n"))
+    }
+    names(BHCFYYMM2) <- names(BHCFYYMM)
+    BHCFYYMM <- rbind(BHCFYYMM, BHCFYYMM2)
+    close.connection(ff)
+  }
 
   unlink(file_name)
   unlink(extract_files[1])
